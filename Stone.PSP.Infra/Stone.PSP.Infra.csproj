@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Stone.PSP.Domain\Stone.PSP.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

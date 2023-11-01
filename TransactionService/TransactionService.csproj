@@ -7,7 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
+    <PackageReference Include="CSharpFunctionalExtensions" Version="2.40.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Stone.PSP.Domain\Stone.PSP.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -5,7 +5,19 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-Domain", "03-Domain", "{C3305F68-3E4C-4927-B256-D0E88E851A67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stone.PSP.Domain", "Stone.PSP.Domain\Stone.PSP.Domain.csproj", "{1B4E4748-8C91-4961-8363-C022249C35E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stone.PSP.Domain", "Stone.PSP.Domain\Stone.PSP.Domain.csproj", "{1B4E4748-8C91-4961-8363-C022249C35E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04-Infra", "04-Infra", "{F2781400-1E9B-4E08-ACD4-D79D4EEC2C1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stone.PSP.Infra", "Stone.PSP.Infra\Stone.PSP.Infra.csproj", "{A8FB2E6D-0A2D-41CF-8AE3-04D74573BC9E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-Application", "02-Application", "{19B2B473-4876-42B8-8CFB-A250A9EB21BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionService", "TransactionService\TransactionService.csproj", "{9F577C34-5E57-406C-B487-657234EEED0E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05-Tests", "05-Tests", "{DA7F38D7-DB1F-4DB9-8CD5-2D2B590C85C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stone.PSP.Domain.Test", "Stone.PSP.Domain.Test\Stone.PSP.Domain.Test.csproj", "{CEAE2B0E-81DA-411C-A4F6-6CA367FF8BEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +29,27 @@ Global
 		{1B4E4748-8C91-4961-8363-C022249C35E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B4E4748-8C91-4961-8363-C022249C35E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B4E4748-8C91-4961-8363-C022249C35E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8FB2E6D-0A2D-41CF-8AE3-04D74573BC9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8FB2E6D-0A2D-41CF-8AE3-04D74573BC9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8FB2E6D-0A2D-41CF-8AE3-04D74573BC9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8FB2E6D-0A2D-41CF-8AE3-04D74573BC9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F577C34-5E57-406C-B487-657234EEED0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F577C34-5E57-406C-B487-657234EEED0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F577C34-5E57-406C-B487-657234EEED0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F577C34-5E57-406C-B487-657234EEED0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEAE2B0E-81DA-411C-A4F6-6CA367FF8BEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEAE2B0E-81DA-411C-A4F6-6CA367FF8BEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEAE2B0E-81DA-411C-A4F6-6CA367FF8BEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEAE2B0E-81DA-411C-A4F6-6CA367FF8BEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1B4E4748-8C91-4961-8363-C022249C35E8} = {C3305F68-3E4C-4927-B256-D0E88E851A67}
+		{A8FB2E6D-0A2D-41CF-8AE3-04D74573BC9E} = {F2781400-1E9B-4E08-ACD4-D79D4EEC2C1B}
+		{9F577C34-5E57-406C-B487-657234EEED0E} = {19B2B473-4876-42B8-8CFB-A250A9EB21BD}
+		{CEAE2B0E-81DA-411C-A4F6-6CA367FF8BEE} = {DA7F38D7-DB1F-4DB9-8CD5-2D2B590C85C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B1206D7D-EB78-4EE6-BBEB-8074CBCE90AD}
