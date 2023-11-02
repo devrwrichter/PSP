@@ -5,7 +5,7 @@ namespace TransactionService.ViewModels
     public class CreditCardViewModel
     {
         [Required(ErrorMessage = "Número do cartão de crédito é necessário.")]
-        [CreditCard]
+        [CreditCard(ErrorMessage ="Esse número de cartão de crédito é inválido.")] 
         public string CardNumber { get; set; }
 
         [Required(ErrorMessage = "Nome do portador do cartão é necessário.")]
