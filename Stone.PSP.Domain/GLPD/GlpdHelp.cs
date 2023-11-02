@@ -1,8 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
-[assembly: InternalsVisibleTo("Stone.PSP.Domain.Test")]
+[assembly: InternalsVisibleTo("Stone.PSP.Domain.Test")]//TODO
 namespace Stone.PSP.Domain.GLPD
 {
-    internal static class GlpdHelp
+    public static class GlpdHelp
     {
         private const int VisibleDigitsLength = 4;
 
@@ -12,7 +12,7 @@ namespace Stone.PSP.Domain.GLPD
         /// <param name="creditCardNumber"></param>
         /// <returns>string</returns>
         /// <exception cref="ArgumentNullException"></exception>
-        internal static string GetOfuscatedCreditCardNumber(this string creditCardNumber)
+        public static string GetOfuscatedCreditCardNumber(this string creditCardNumber)
         {
             if (string.IsNullOrEmpty(creditCardNumber))
             {
