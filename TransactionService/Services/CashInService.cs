@@ -4,6 +4,7 @@ using Stone.PSP.Domain.Services;
 using Stone.PSP.Domain.UnitOfWork;
 using TransactionService.ViewModels;
 using Stone.PSP.Domain.GLPD;
+using FluentValidation;
 
 namespace TransactionService.Services
 {
@@ -11,11 +12,13 @@ namespace TransactionService.Services
     {
         private IPayableDomainService _payableDomainService;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IValidator<PspTransaction> _transactionValidator;
 
-        public CashInService(IUnitOfWork unitOfWork, IPayableDomainService payableDomainService)
+        public CashInService(IUnitOfWork unitOfWork, IPayableDomainService payableDomainService, IValidator<PspTransaction> transactionValidator)
         {
             _unitOfWork = unitOfWork;
             _payableDomainService = payableDomainService;
+            _transactionValidator = transactionValidator;
         }
 
         public async Task<Result> ProcessTransactionAsync(TransactionViewModel transactionViewModel)
@@ -26,6 +29,11 @@ namespace TransactionService.Services
             var payable = _payableDomainService.GetPayable(pspTransaction);
 
             //validate
+            var transactionResult = await _transactionValidator.ValidateAsync(pspTransaction);
+            if (!transactionResult.IsValid)
+            {
+                //TODO
+            }
 
             using(var transaction = _unitOfWork.BeginTransaction())
             {

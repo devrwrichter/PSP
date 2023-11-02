@@ -163,5 +163,7 @@ namespace Stone.PSP.Domain.Test
             //Assert
             result.Errors.Should().Satisfy(x => x.ErrorMessage.Equals(TransactionValidator.ErrorPaymentMethodCode));
         }
+
+        //TODO: Fazer testes com todas as propriedades erro e ok.
     }
 }
