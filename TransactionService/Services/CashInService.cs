@@ -12,9 +12,9 @@ namespace TransactionService.Services
     {
         private IPayableDomainService _payableDomainService;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly AbstractValidator<PspTransaction> _transactionValidator;
+        private readonly IValidator<PspTransaction> _transactionValidator;
 
-        public CashInService(IUnitOfWork unitOfWork, IPayableDomainService payableDomainService, AbstractValidator<PspTransaction> transactionValidator)
+        public CashInService(IUnitOfWork unitOfWork, IPayableDomainService payableDomainService, IValidator<PspTransaction> transactionValidator)
         {
             _unitOfWork = unitOfWork;
             _payableDomainService = payableDomainService;
