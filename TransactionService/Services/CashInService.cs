@@ -1,10 +1,10 @@
-﻿using CSharpFunctionalExtensions;
+﻿using FluentValidation;
 using Stone.PSP.Domain.Entities;
+using Stone.PSP.Domain.GLPD;
 using Stone.PSP.Domain.Services;
 using Stone.PSP.Domain.UnitOfWork;
+using TransactionService.Help;
 using TransactionService.ViewModels;
-using Stone.PSP.Domain.GLPD;
-using FluentValidation;
 
 namespace TransactionService.Services
 {
@@ -21,21 +21,17 @@ namespace TransactionService.Services
             _transactionValidator = transactionValidator;
         }
 
-        public async Task<Result> ProcessTransactionAsync(TransactionViewModel transactionViewModel)
+        public async Task<IResult<TransactionViewModel>> ProcessTransactionAsync(TransactionViewModel transactionViewModel)
         {
-            Result<TransactionViewModel> result = new();
-
             var pspTransaction = GetTransactionByViewModel(transactionViewModel);
             var payable = _payableDomainService.GetPayable(pspTransaction);
 
-            //validate
-            var transactionResult = await _transactionValidator.ValidateAsync(pspTransaction);
-            if (!transactionResult.IsValid)
-            {
-                //TODO
-            }
+            var validationResult = await _transactionValidator.ValidateAsync(pspTransaction);
 
-            using(var transaction = _unitOfWork.BeginTransaction())
+            if (!validationResult.IsValid)
+                return new Result<TransactionViewModel>(validationResult);
+
+            using (var transaction = _unitOfWork.BeginTransaction())
             {
                 try
                 {
@@ -50,7 +46,8 @@ namespace TransactionService.Services
                 }
             }
 
-            return result;
+            var response = transactionViewModel with { TransactionId = pspTransaction.Id };
+            return new Result<TransactionViewModel>(response);
         }
 
         private PspTransaction GetTransactionByViewModel(TransactionViewModel transactionViewModel)

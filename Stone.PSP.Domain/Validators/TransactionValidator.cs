@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Stone.PSP.Domain.Entities;
 using Stone.PSP.Domain.Enumerators;
+using System.Text.RegularExpressions;
 
 namespace Stone.PSP.Domain.Validators
 {
@@ -43,10 +44,13 @@ namespace Stone.PSP.Domain.Validators
                     .WithMessage(ErrorInvalidDescriptionLength);
             });
 
-
             this.RuleFor(x => x.PaymentMethodCode)
                 .CheckIntValueInEnum<PspTransaction, PaymentMethodCodeType>()
                 .WithMessage(ErrorPaymentMethodCode);
+
+            this.RuleFor(x => x.CardVerificationCode)
+                .Must(x => IsValidCardVerificationCode(x))
+                .WithMessage(ErrorCardVerificationCode);
 
             this.RuleFor(x => x.CardVerificationCode)
                 .Must(x => IsValidCardVerificationCode(x))
@@ -66,13 +70,11 @@ namespace Stone.PSP.Domain.Validators
 
         private bool IsValidCardValidateDate(DateTime expirationDate)
         {
-            //Não sei se seria exatamente essa a validação para essa questão
-            return expirationDate > DateTime.Today.AddDays(1);
+            return expirationDate > DateTime.Today;
         }
 
         private bool IsValidCardVerificationCode(int cvc)
         {
-            //Não sei se seria exatamente essa a validação para essa questão
             return cvc.ToString().Length >= 3 && cvc.ToString().Length <= 4;
         }
     }
