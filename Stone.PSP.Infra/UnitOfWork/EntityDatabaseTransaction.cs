@@ -11,9 +11,9 @@ namespace Stone.PSP.Domain.UnitOfWork
         {
                 _transaction = context.Database.BeginTransaction();
         }
-        public void Commit()
+        public async Task  CommitAsync()
         {
-            _transaction.Commit();
+            await _transaction.CommitAsync();
         }
 
         public void Dispose()
@@ -21,9 +21,9 @@ namespace Stone.PSP.Domain.UnitOfWork
             _transaction?.Dispose();
         }
 
-        public void Rollback()
+        public async Task RollbackAsync()
         {
-            _transaction.Rollback();
+            await _transaction.RollbackAsync();
         }
     }
 }

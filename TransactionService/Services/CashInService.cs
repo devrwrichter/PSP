@@ -41,12 +41,12 @@ namespace TransactionService.Services
                 {
                     await _unitOfWork.PspTransactionRepository.SaveAsync(pspTransaction);
                     await _unitOfWork.PayableRepository.SaveAsync(payable);
-                    transaction.Commit();
-                   //TODO: Return result.
+                    await transaction.CommitAsync();
                 }
                 catch (Exception)
                 {
-                    transaction.Rollback();
+                    await transaction.RollbackAsync();
+                    throw;
                 }
             }
 

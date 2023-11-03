@@ -20,7 +20,7 @@ namespace Stone.PSP.Domain.Validators
         public const string ErrorCardNumberEmpty = "O número do cartão de crédito precisa ser informado.";
         public const string ErrorInvalidDescriptionLength = $"O tamanho da descrição precisa estar entre 5 e 200";
 
-        public const int MaxLengthDescription = 200;
+        public const int MaxLengthDescription = 100;
         public const int MinLengthDescription = 5;
 
         #endregion

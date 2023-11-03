@@ -7,6 +7,6 @@ namespace Stone.PSP.Domain.UnitOfWork
         IPspTransactionRepository PspTransactionRepository { get; }
         IPayableRepository PayableRepository { get; }
         IDatabaseTransaction BeginTransaction();
-        void Commit();
+        Task CommitAsync();
     }
 }

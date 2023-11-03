@@ -32,7 +32,8 @@ namespace Stone.PSP.Domain.Services
         {
             return new()
             {
-                Id = transaction.ClientId,
+                Id = Guid.NewGuid(),
+                TransactionId = transaction.Id,
                 Value = Math.Round(transaction.Value - (transaction.Value * CreditFee),2),
                 Status = (int)PayableStatusType.WaitingFunds,
                 PaymentDate = DateTime.Today.AddDays(DaysParameterPaymentDateCredit)
@@ -43,7 +44,8 @@ namespace Stone.PSP.Domain.Services
         {
             return new()
             {
-                Id = transaction.ClientId,
+                Id = Guid.NewGuid(),
+                TransactionId = transaction.Id,
                 Value = Math.Round(transaction.Value - (transaction.Value * DebitFee),2),
                 Status = (int)PayableStatusType.Paid,
                 PaymentDate = DateTime.Today

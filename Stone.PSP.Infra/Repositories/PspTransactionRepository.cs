@@ -13,9 +13,17 @@ namespace Stone.PSP.Infra.Repositories
             _context = context;
         }
 
-        public Task SaveAsync(PspTransaction pspTransaction)
+        public async Task SaveAsync(PspTransaction pspTransaction)
         {
-            throw new NotImplementedException();
+            await _context.Transactions.AddAsync(pspTransaction);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }
