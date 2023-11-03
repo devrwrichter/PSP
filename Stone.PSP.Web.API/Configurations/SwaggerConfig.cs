@@ -1,6 +1,5 @@
 ﻿using Microsoft.OpenApi.Models;
 using Stone.PSP.Web.API.Swagger;
-
 using Swashbuckle.AspNetCore.Filters;
 
 namespace Stone.PSP.Web.API.Configurations

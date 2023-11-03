@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TransactionService.Services;
 using TransactionService.ViewModels;
-using TransactionService.Help;
 
 namespace Stone.PSP.Web.API.Controllers
 {
@@ -30,7 +29,7 @@ namespace Stone.PSP.Web.API.Controllers
             if (!result.Success)
                 return BadRequest(result);
 
-            return new CreatedAtActionResult(nameof(GetById), "CashIn", new { id = 4 }, result.Model);
+            return new CreatedAtActionResult(nameof(GetById), "CashIn", new { id = result.Model?.TransactionId }, result.Model);
         }
     }
 }
