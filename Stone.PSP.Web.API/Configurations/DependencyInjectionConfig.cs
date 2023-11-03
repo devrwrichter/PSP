@@ -18,12 +18,17 @@ namespace Stone.PSP.Web.API.Configurations
         {
             services.AddScoped<ICashInService, CashInService>();
             services.AddScoped<IPayableDomainService, PayableDomainService>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>(); 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IValidator<PspTransaction>, TransactionValidator>();
             services.AddScoped<IPspTransactionRepository, PspTransactionRepository>();
             services.AddScoped<IPayableRepository, PayableRepository>();
             services.AddScoped<IDatabaseTransaction, EntityDatabaseTransaction>();
 
+            ConfigDatabase(services, configuration);
+        }
+
+        private static void ConfigDatabase(IServiceCollection services, ConfigurationManager configuration)
+        {
             var connectionString = configuration.GetConnectionString("SqlServer");
 
             var optionsBuilder = new DbContextOptionsBuilder<PaymentContext>();

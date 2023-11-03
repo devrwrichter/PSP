@@ -1,3 +1,5 @@
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Stone.PSP.Web.API.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.ConfigureSwagger();
 builder.Services.RegisterServices(builder.Configuration);
+builder.Services.ConfigureHealthChecks(builder.Configuration);
+
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
@@ -20,6 +24,15 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.MapHealthChecks("health");
+
+app.UseHealthChecks("/health", new HealthCheckOptions
+{
+    Predicate = p => true,
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
+
+app.UseHealthChecksUI(options => { options.UIPath = "/dashboard"; });
 
 app.MapControllers();
 
