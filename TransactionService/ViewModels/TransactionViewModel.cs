@@ -1,6 +1,6 @@
 ﻿namespace TransactionService.ViewModels
 {
-    public class TransactionViewModel
+    public record TransactionViewModel
     {
         public decimal Value { get; set; }
         public string? Description { get; set; }
