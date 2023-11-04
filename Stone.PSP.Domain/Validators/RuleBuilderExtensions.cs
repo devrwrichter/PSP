@@ -5,9 +5,9 @@ namespace Stone.PSP.Domain.Validators
 {
     public static class RuleBuilderExtensions
     {
-        public static IRuleBuilderOptions<T, int> CheckIntValueInEnum<T, TE>(this IRuleBuilder<T, int> ruleBuilder) where TE : struct
+        public static IRuleBuilderOptions<T, byte> CheckIntValueInEnum<T, TE>(this IRuleBuilder<T, byte> ruleBuilder) where TE : struct
         {
-            return ruleBuilder.SetValidator(new ValidatorIfNullIntExistsInEnumerator<T, int, TE>());
+            return ruleBuilder.SetValidator(new ValidatorIfNullIntExistsInEnumerator<T, byte, TE>());
         }
     }
-    }
+}

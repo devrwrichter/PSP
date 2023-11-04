@@ -21,7 +21,7 @@ namespace Stone.PSP.Domain.Test
             PspTransaction _transaction = new()
             {
                 Value = value,
-                PaymentMethodCode = (int)code
+                PaymentMethodCode = (byte)code
             };
 
             //Action

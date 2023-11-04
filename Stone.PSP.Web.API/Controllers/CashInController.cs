@@ -17,8 +17,13 @@ namespace Stone.PSP.Web.API.Controllers
 
         [HttpGet]
         [Route("GetById")]
-        public IActionResult GetById(int id) {
-            return Ok("teste");
+        public async Task<IActionResult> GetById(Guid id) {
+
+            var transaction = await _cashInService.GetTransactionByIdAsync(id);
+            if(transaction != null)
+                return Ok(transaction);
+            else 
+                return NotFound();
         }
 
         [HttpPost]

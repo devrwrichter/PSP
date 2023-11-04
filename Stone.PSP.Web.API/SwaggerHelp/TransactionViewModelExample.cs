@@ -21,7 +21,7 @@ namespace Stone.PSP.Web.API.Swagger
                     CardNumber = "5452 4631 0836 7683",
                     CardHolder = "Portador do cartão de crédito",
                     CardValidateDate = new DateTime(2040, 01, 01),
-                    CardVerificationCode = 123
+                    CardVerificationCode = "123"
                 }
             };
         }

@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using Stone.PSP.Domain.Entities;
 using Stone.PSP.Domain.Enumerators;
-using System.Text.RegularExpressions;
 
 namespace Stone.PSP.Domain.Validators
 {
@@ -50,11 +49,7 @@ namespace Stone.PSP.Domain.Validators
 
             this.RuleFor(x => x.CardVerificationCode)
                 .Must(x => IsValidCardVerificationCode(x))
-                .WithMessage(ErrorCardVerificationCode);
-
-            this.RuleFor(x => x.CardVerificationCode)
-                .Must(x => IsValidCardVerificationCode(x))
-                .WithMessage(ErrorCardVerificationCode);
+                .WithMessage(ErrorCardVerificationCode);            
 
             this.RuleFor(x => x.CardExpirationDate)
                 .Must(x => IsValidCardValidateDate(x))
@@ -73,9 +68,9 @@ namespace Stone.PSP.Domain.Validators
             return expirationDate > DateTime.Today;
         }
 
-        private bool IsValidCardVerificationCode(int cvc)
+        private bool IsValidCardVerificationCode(string cvc)
         {
-            return cvc.ToString().Length >= 3 && cvc.ToString().Length <= 4;
+            return cvc.Length >= 3 && cvc.Length <= 4;
         }
     }
 }

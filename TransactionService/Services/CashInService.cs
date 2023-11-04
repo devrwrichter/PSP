@@ -3,6 +3,7 @@ using Stone.PSP.Domain.Entities;
 using Stone.PSP.Domain.GLPD;
 using Stone.PSP.Domain.Services;
 using Stone.PSP.Domain.UnitOfWork;
+using System.ComponentModel.Design;
 using TransactionService.Help;
 using TransactionService.ViewModels;
 
@@ -19,6 +20,41 @@ namespace TransactionService.Services
             _unitOfWork = unitOfWork;
             _payableDomainService = payableDomainService;
             _transactionValidator = transactionValidator;
+        }
+
+        public async Task<TransactionViewModel?> GetTransactionByIdAsync(Guid id)
+        {
+            var model = await _unitOfWork.PspTransactionRepository.GetTransactionByIdAsync(id);
+            return GetTransactionModelByViewModel(model);
+        }
+
+        private TransactionViewModel? GetTransactionModelByViewModel(PspTransaction? model)
+        {
+            if (model != null)
+            {
+                return new TransactionViewModel
+                {
+                    Description = model.Description,
+                    PaymentMethodCode = model.PaymentMethodCode,
+                    TransactionId = model.Id,
+                    Value = model.Value,
+                    Client = new ClientViewModel
+                    {
+                        Id = model.ClientId
+                    },
+                    CreditCard = new CreditCardViewModel
+                    {
+                        CardHolder = model.CardHolder,
+                        CardNumber = model.CardNumber,
+                        CardValidateDate = model.CardExpirationDate,
+                        CardVerificationCode = model.CardVerificationCode
+                    }
+                };
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public async Task<IResult<TransactionViewModel>> ProcessTransactionAsync(TransactionViewModel transactionViewModel)
@@ -63,6 +99,6 @@ namespace TransactionService.Services
                 CardExpirationDate = transactionViewModel.CreditCard.CardValidateDate,
                 CardVerificationCode = transactionViewModel.CreditCard.CardVerificationCode
             };
-        }
+        }        
     }
 }

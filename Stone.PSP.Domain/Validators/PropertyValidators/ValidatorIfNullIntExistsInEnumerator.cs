@@ -4,7 +4,7 @@ using Stone.PSP.Domain.Help;
 
 namespace Stone.PSP.Domain.Validators.PropertyValidators
 {
-    internal class ValidatorIfNullIntExistsInEnumerator<T, T1, TEnum> : IPropertyValidator<T, int> where TEnum : struct
+    internal class ValidatorIfNullIntExistsInEnumerator<T, T1, TEnum> : IPropertyValidator<T, byte> where TEnum : struct
     {
         public string Name => "ValidatorIfNullIntExistsInEnumerator";
 
@@ -13,7 +13,7 @@ namespace Stone.PSP.Domain.Validators.PropertyValidators
             return $"Value not exists in enumerator {typeof(TEnum).Name}";
         }
 
-        public bool IsValid(ValidationContext<T> context, int value)
+        public bool IsValid(ValidationContext<T> context, byte value)
         {
             return EnumUtils.ExistsInEnum<TEnum>(value);
         }

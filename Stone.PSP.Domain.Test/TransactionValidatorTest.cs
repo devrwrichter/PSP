@@ -14,11 +14,11 @@ namespace Stone.PSP.Domain.Test
             Value = 500.0M,
             CardExpirationDate = DateTime.Today.AddYears(5),
             CardHolder = "Nome do portador do cartão",
-            CardVerificationCode = 724,
+            CardVerificationCode = "724",
             CardNumber = "5452 4631 0836 7683",
             ClientId = Guid.NewGuid(),
             Description = "Smartband XYZ 3.0",
-            PaymentMethodCode = (int)PaymentMethodCodeType.Credit
+            PaymentMethodCode = (byte)PaymentMethodCodeType.Credit
         };
 
         [Fact]
@@ -64,7 +64,7 @@ namespace Stone.PSP.Domain.Test
         public void Validate_CardVerificationCodeMinor_ShouldBeError()
         {
             //Arrange
-            PspTransaction transactionTest = _transaction with { CardVerificationCode = 1 };
+            PspTransaction transactionTest = _transaction with { CardVerificationCode = "1" };
 
             //Action
             var result = _validator.Validate(transactionTest);
@@ -77,7 +77,7 @@ namespace Stone.PSP.Domain.Test
         public void Validate_CardVerificationCodeMajor_ShouldBeError()
         {
             //Arrange
-            PspTransaction transactionTest = _transaction with { CardVerificationCode = 55555 };
+            PspTransaction transactionTest = _transaction with { CardVerificationCode = "55555" };
 
             //Action
             var result = _validator.Validate(transactionTest);
@@ -155,7 +155,7 @@ namespace Stone.PSP.Domain.Test
         public void Validate_PaymentCodeInvalidValue_ShouldBeError()
         {
             //Arrange
-            PspTransaction transactionTest = _transaction with { PaymentMethodCode = 3 };
+            PspTransaction transactionTest = _transaction with { PaymentMethodCode = (byte)3 };
 
             //Action
             var result = _validator.Validate(transactionTest);

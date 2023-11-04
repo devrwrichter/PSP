@@ -12,7 +12,7 @@ namespace TransactionService.ViewModels
         public string CardHolder { get; set; }
 
         [Required(ErrorMessage = "Código de verificação do cartão é necessário.")]
-        public int CardVerificationCode { get; set; }
+        public string CardVerificationCode { get; set; }
 
         [Required(ErrorMessage = "Data de validade do cartão é necessário.")]
         public DateTime CardValidateDate { get; set; }
