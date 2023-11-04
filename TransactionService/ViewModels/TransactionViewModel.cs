@@ -2,7 +2,7 @@
 
 namespace TransactionService.ViewModels
 {
-    public record TransactionViewModel
+    public record TransactionViewModel : IViewModel
     {
         [JsonIgnore]
         public Guid TransactionId { get; set; }

@@ -3,7 +3,6 @@ using Stone.PSP.Domain.Entities;
 using Stone.PSP.Domain.GLPD;
 using Stone.PSP.Domain.Services;
 using Stone.PSP.Domain.UnitOfWork;
-using System.ComponentModel.Design;
 using TransactionService.Help;
 using TransactionService.ViewModels;
 
@@ -88,13 +87,17 @@ namespace TransactionService.Services
 
         private PspTransaction GetTransactionByViewModel(TransactionViewModel transactionViewModel)
         {
+            //Uma outra opção seria trabalhar com a Transaction como um objeto de domínio, nesse caso não seria
+            //uma classe anêmica e as validações e aplicações de regra de negócio ficariam internas ao objeto.
+            //Tudo depende muito da complexidade e das necessidades da empresa e de seus projetos.
+            //Exemplo: Stone.PSP.Domain.DomainObjects.
             return new PspTransaction
             {
                 ClientId = transactionViewModel.Client.Id,
                 PaymentMethodCode = transactionViewModel.PaymentMethodCode,
                 Value = transactionViewModel.Value,
                 Description = transactionViewModel.Description?.Trim(),
-                CardNumber = transactionViewModel.CreditCard.CardNumber.Trim().GetOfuscatedCreditCardNumber(),//TODO
+                CardNumber = transactionViewModel.CreditCard.CardNumber.Trim().GetOfuscatedCreditCardNumber(),
                 CardHolder = transactionViewModel.CreditCard.CardHolder.Trim(),
                 CardExpirationDate = transactionViewModel.CreditCard.CardValidateDate,
                 CardVerificationCode = transactionViewModel.CreditCard.CardVerificationCode

@@ -7,7 +7,7 @@ namespace Stone.PSP.Domain.Services
     public class PayableDomainService : IPayableDomainService
     {
         //Seria ideal que esses dados ficassem armazenados fora da aplicação, para facilitar a manutenção,
-        //apenas colocando aqui devido ser teste e ter tempo.
+        //apenas colocando aqui devido ser teste e sem ter tempo.
         private const decimal CreditFee = 0.05M;
         private const decimal DebitFee = 0.03M;
         private const int DaysParameterPaymentDateCredit = 30;

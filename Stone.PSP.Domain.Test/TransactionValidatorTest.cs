@@ -164,6 +164,27 @@ namespace Stone.PSP.Domain.Test
             result.Errors.Should().Satisfy(x => x.ErrorMessage.Equals(TransactionValidator.ErrorPaymentMethodCode));
         }
 
-        //TODO: Fazer testes com todas as propriedades erro e ok.
+        [Fact]
+        public void Validate_AllErrors_ShouldBeError()
+        {
+            //Arrange
+            PspTransaction transactionTest = new PspTransaction();
+
+            //Action
+            var result = _validator.Validate(transactionTest);
+
+            //Assert
+            result.Errors.Should().HaveCount(8);
+        }
+
+        [Fact]
+        public void Validate_ValidObject_ShouldBeOk()
+        {
+            //Action
+            var result = _validator.Validate(_transaction);
+
+            //Assert
+            result.IsValid.Should().BeTrue();
+        }
     }
 }

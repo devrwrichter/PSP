@@ -4,7 +4,8 @@ namespace TransactionService.Help
 {
     public interface IResult<T>
     {
-        T? Model { get; }
+        public IList<string>? Errors { get; }
+            T? Model { get; }
         public bool Success { get; }
     }
 }

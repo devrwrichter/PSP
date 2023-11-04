@@ -47,9 +47,15 @@ namespace Stone.PSP.Domain.Validators
                 .CheckIntValueInEnum<PspTransaction, PaymentMethodCodeType>()
                 .WithMessage(ErrorPaymentMethodCode);
 
-            this.RuleFor(x => x.CardVerificationCode)
+            this.RuleFor(x => x.CardVerificationCode).NotNull()
+               .WithMessage(ErrorCardVerificationCode);
+
+            When(x => !string.IsNullOrEmpty(x.CardVerificationCode), () =>
+            {
+                this.RuleFor(x => x.CardVerificationCode)
                 .Must(x => IsValidCardVerificationCode(x))
-                .WithMessage(ErrorCardVerificationCode);            
+                .WithMessage(ErrorCardVerificationCode);
+            });
 
             this.RuleFor(x => x.CardExpirationDate)
                 .Must(x => IsValidCardValidateDate(x))

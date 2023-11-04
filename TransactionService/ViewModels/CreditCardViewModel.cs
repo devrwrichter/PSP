@@ -2,7 +2,7 @@
 
 namespace TransactionService.ViewModels
 {
-    public class CreditCardViewModel
+    public class CreditCardViewModel : IViewModel
     {
         [Required(ErrorMessage = "Número do cartão de crédito é necessário.")]
         [CreditCard(ErrorMessage ="Esse número de cartão de crédito é inválido.")] 
