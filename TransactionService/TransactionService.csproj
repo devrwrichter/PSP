@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Stone.PSP.Crosscutting\Stone.PSP.Crosscutting.csproj" />
     <ProjectReference Include="..\Stone.PSP.Domain\Stone.PSP.Domain.csproj" />
   </ItemGroup>
 

@@ -17,6 +17,7 @@ namespace Stone.PSP.Web.API.Configurations
         public static void RegisterServices(this IServiceCollection services, ConfigurationManager configuration)
         {
             services.AddScoped<ICashInService, CashInService>();
+            services.AddScoped<ICashOutService, CashOutService>();
             services.AddScoped<IPayableDomainService, PayableDomainService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IValidator<PspTransaction>, TransactionValidator>();
@@ -30,11 +31,11 @@ namespace Stone.PSP.Web.API.Configurations
         private static void ConfigDatabase(IServiceCollection services, ConfigurationManager configuration)
         {
             var connectionString = configuration.GetConnectionString("SqlServer");
-
             var optionsBuilder = new DbContextOptionsBuilder<PaymentContext>();
             optionsBuilder.UseSqlServer(connectionString);
 
             services.AddScoped<PaymentContext>(opt => new PaymentContext(optionsBuilder.Options));
+            services.AddSingleton<PaymentDapperContext>();
         }
     }
 }

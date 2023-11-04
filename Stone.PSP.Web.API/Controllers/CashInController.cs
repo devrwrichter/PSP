@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Stone.PSP.Crosscutting;
 using TransactionService.Services;
 using TransactionService.ViewModels;
 
@@ -23,6 +24,17 @@ namespace Stone.PSP.Web.API.Controllers
             if(transaction != null)
                 return Ok(transaction);
             else 
+                return NotFound();
+        }
+
+        [HttpGet]
+        [Route("GetTransactions")]
+        public async Task<IActionResult> GetTransactions(Pagination pagination)
+        {
+            var result = await _cashInService.GetTransactionsAsync(pagination);
+            if (result.Any())
+                return Ok(result);
+            else
                 return NotFound();
         }
 

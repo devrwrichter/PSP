@@ -168,7 +168,7 @@ namespace Stone.PSP.Domain.Test
         public void Validate_AllErrors_ShouldBeError()
         {
             //Arrange
-            PspTransaction transactionTest = new PspTransaction();
+            PspTransaction transactionTest = new();
 
             //Action
             var result = _validator.Validate(transactionTest);

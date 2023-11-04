@@ -15,8 +15,7 @@ namespace Stone.PSP.Infra.Context
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new TransactionMapping());
-            modelBuilder.ApplyConfiguration(new PayableMapping());
+            modelBuilder.ApplyConfiguration(new PayableMapping());            
         }
-
     }
 }

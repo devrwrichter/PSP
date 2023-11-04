@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Stone.PSP.Crosscutting;
 using Stone.PSP.Domain.Entities;
 using Stone.PSP.Domain.GLPD;
 using Stone.PSP.Domain.Services;
@@ -102,6 +103,13 @@ namespace TransactionService.Services
                 CardExpirationDate = transactionViewModel.CreditCard.CardValidateDate,
                 CardVerificationCode = transactionViewModel.CreditCard.CardVerificationCode
             };
-        }        
+        }
+
+        public async Task<IList<TransactionViewModel>> GetTransactionsAsync(Pagination pagination)
+        {
+            IList<PspTransaction> transactions = await _unitOfWork.PspTransactionRepository.GetTransactionsAsync(pagination);
+
+            return null;
+        }
     }
 }
