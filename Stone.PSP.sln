@@ -23,11 +23,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Api", "01-Api", "{EBFCE1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stone.PSP.Web.API", "Stone.PSP.Web.API\Stone.PSP.Web.API.csproj", "{3E9A5B74-3A3B-49E5-BF11-0DD583AA9FCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stone.PSP.Application.Test", "Stone.PSP.Application.Test\Stone.PSP.Application.Test.csproj", "{64568DC3-CE1A-410E-9C5D-5C9B8152BF76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stone.PSP.Application.Test", "Stone.PSP.Application.Test\Stone.PSP.Application.Test.csproj", "{64568DC3-CE1A-410E-9C5D-5C9B8152BF76}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05-Crosscutting", "05-Crosscutting", "{59810624-3041-4281-80A9-5921CA3CB677}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stone.PSP.Crosscutting", "Stone.PSP.Crosscutting\Stone.PSP.Crosscutting.csproj", "{81B6F968-3E04-4A78-94BC-F5BC5F3C6A39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stone.PSP.Crosscutting", "Stone.PSP.Crosscutting\Stone.PSP.Crosscutting.csproj", "{81B6F968-3E04-4A78-94BC-F5BC5F3C6A39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
