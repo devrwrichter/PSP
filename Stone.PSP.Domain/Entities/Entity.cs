@@ -7,7 +7,7 @@
 
         public Entity()
         {
-               Id = Guid.NewGuid();
+            Id = Guid.NewGuid();
             CreateAt = DateTime.Now;
         }
     }

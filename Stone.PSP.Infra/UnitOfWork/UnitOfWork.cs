@@ -7,14 +7,19 @@ namespace Stone.PSP.Infra.UnitOfWork
     public class UnitOfWork : IUnitOfWork
     {
         private readonly PaymentContext _context;
-        public IPspTransactionRepository PspTransactionRepository { get; }
+        public IPspTransactionRepository PspTransactionRepository { get; }//TODO: Make readonly
         public IPayableRepository PayableRepository { get; }
 
-        public UnitOfWork(PaymentContext context, IPspTransactionRepository pspTransactionRepository, IPayableRepository payableRepository)
+        public readonly IDatabaseTransaction _databaseTransaction;
+
+        public UnitOfWork(PaymentContext context, IPspTransactionRepository pspTransactionRepository, 
+            IPayableRepository payableRepository, 
+            IDatabaseTransaction dataBaseTransaction)
         {
             _context = context;
             PspTransactionRepository = pspTransactionRepository;
             PayableRepository = payableRepository;
+            _databaseTransaction = dataBaseTransaction;
         }
 
         public async Task CommitAsync()
@@ -24,7 +29,7 @@ namespace Stone.PSP.Infra.UnitOfWork
 
         public IDatabaseTransaction BeginTransaction()
         {
-            return new EntityDatabaseTransaction(_context);
+            return _databaseTransaction;
         }
     }
 }

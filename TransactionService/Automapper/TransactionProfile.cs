@@ -11,6 +11,7 @@ namespace Stone.PSP.TransactionService.Automapper
         {
             CreateMap<PspTransaction, TransactionViewModel>()
                 .ForMember(dest => dest.Client,opt => opt.MapFrom(src => new ClientViewModel { Id = src.ClientId }))
+                .ForMember(dest => dest.TransactionId, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.CreditCard, opt => opt.MapFrom(src => new CreditCardViewModel
                 {
                     Holder = src.CardHolder,

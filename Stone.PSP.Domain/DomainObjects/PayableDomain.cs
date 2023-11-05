@@ -41,7 +41,7 @@ namespace Stone.PSP.Domain.DomainObjects
                 TransactionId = _transaction.Id,
                 Value = Math.Round(_transaction.Value - (_transaction.Value * _feeConfig.CreditFeePercent), 2),
                 Status = (int)PayableStatusType.WaitingFunds,
-                PaymentDate = DateTime.Today.AddDays(_feeConfig.Days)
+                PaymentDate = DateTime.Now.AddDays(_feeConfig.Days)
             };
         }
 
@@ -53,7 +53,7 @@ namespace Stone.PSP.Domain.DomainObjects
                 TransactionId = _transaction.Id,
                 Value = Math.Round(_transaction.Value - (_transaction.Value * _feeConfig.DebitFeePercent), 2),
                 Status = (int)PayableStatusType.Paid,
-                PaymentDate = DateTime.Today
+                PaymentDate = DateTime.Now
             };
         }
     }

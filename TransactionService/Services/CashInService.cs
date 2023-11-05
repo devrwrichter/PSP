@@ -74,7 +74,7 @@ namespace TransactionService.Services
                 }
             }
 
-            var response = transactionViewModel with { TransactionId = pspTransaction.Id };
+            var response = _mapper.Map<TransactionViewModel>(pspTransaction);
             return new Result<TransactionViewModel>(response);
         }
 

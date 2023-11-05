@@ -25,7 +25,7 @@ namespace TransactionService.Services
                     return null;
             }catch(Exception ex)
             {
-                _logger.LogError(ex.Message, ex);
+                _logger.LogError(ex.Message);
                 throw;
             }
         }

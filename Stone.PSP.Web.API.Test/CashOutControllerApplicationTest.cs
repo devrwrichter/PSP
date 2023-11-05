@@ -19,6 +19,13 @@ namespace Stone.PSP.Web.API.Test
 
         public CashOutControllerApplicationTest()
         {
+            _logger.Setup(x => x.Log(
+                LogLevel.Error,
+                It.IsAny<EventId>(),
+                It.IsAny<It.IsAnyType>(),
+                It.IsAny<Exception>(),
+                It.IsAny<Func<It.IsAnyType, Exception?, string>>()));
+
             _payableRepository = new Mock<IPayableRepository>();
             _cashOutService = new CashOutService(_payableRepository.Object, _logger.Object);
             _cashOutController = new CashOutController(_cashOutService);
@@ -64,13 +71,20 @@ namespace Stone.PSP.Web.API.Test
         public void GetBalance_ThrowExceptionOnRepository_ShouldBeOk()
         {
             //Arrange
-            _payableRepository.Setup(x => x.GetBalanceAsync(It.IsAny<Guid>())).ThrowsAsync(new Exception("Any error"));
+            var ex = new Exception();
+            _payableRepository.Setup(x => x.GetBalanceAsync(It.IsAny<Guid>())).ThrowsAsync(ex);
 
             //Action
             Func<Task> fn = async () => { await _cashOutController.GetBalanceAsync(Guid.NewGuid()); };
 
             //Assert
             fn.Should().ThrowAsync<Exception>();
+            _logger.Verify(x => x.Log(
+                LogLevel.Error,
+                It.IsAny<EventId>(),
+                It.IsAny<It.IsAnyType>(),
+                It.IsAny<Exception>(),
+                It.IsAny<Func<It.IsAnyType, Exception?, string>>()), Times.Once);
         }
     }
 }

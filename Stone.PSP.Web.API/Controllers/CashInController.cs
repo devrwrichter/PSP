@@ -7,7 +7,7 @@ namespace Stone.PSP.Web.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CashInController : ControllerBase
+    public class CashInController : MainController
     {
         private readonly ICashInService _cashInService;
 
@@ -53,11 +53,17 @@ namespace Stone.PSP.Web.API.Controllers
         [Route("ProcessTransaction")]        
         public async Task<IActionResult> ProcessTransaction([FromBody] TransactionViewModel transaction)
         {
-            var result = await _cashInService.ProcessTransactionAsync(transaction);
-            if (!result.Success)
-                return BadRequest(result);
+            try
+            {
+                var result = await _cashInService.ProcessTransactionAsync(transaction);
+                if (!result.Success)
+                    return BadRequest(result);
 
-            return new CreatedAtActionResult(nameof(GetById), "CashIn", new { id = result.Model?.TransactionId }, result.Model);
+                return new CreatedAtActionResult(nameof(GetById), "CashIn", new { id = result.Model?.TransactionId }, result.Model);
+            }catch(Exception) {
+                return StatusCode(StatusCodes.Status500InternalServerError, InternalServerError);
+            }
+
         }
     }
 }

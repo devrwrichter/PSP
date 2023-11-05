@@ -12,10 +12,10 @@ namespace TransactionService.ViewModels
         public ClientViewModel Client { get; set; }
         public CreditCardViewModel CreditCard { get; set; }
 
-        public TransactionViewModel()
-        {
-            Client = new ClientViewModel();
-            CreditCard = new CreditCardViewModel();
-        }
+        //public TransactionViewModel()
+        //{
+        //    Client = new ClientViewModel();
+        //    CreditCard = new CreditCardViewModel();
+        //}
     }
 }
