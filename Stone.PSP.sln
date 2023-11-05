@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stone.PSP.Infra", "Stone.PS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-Application", "02-Application", "{19B2B473-4876-42B8-8CFB-A250A9EB21BD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransactionService", "TransactionService\TransactionService.csproj", "{9F577C34-5E57-406C-B487-657234EEED0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stone.PSP.TransactionService", "TransactionService\Stone.PSP.TransactionService.csproj", "{9F577C34-5E57-406C-B487-657234EEED0E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06-Tests", "06-Tests", "{DA7F38D7-DB1F-4DB9-8CD5-2D2B590C85C8}"
 EndProject

@@ -7,7 +7,8 @@ namespace TransactionService.Services
     public interface ICashInService
     {
         Task<TransactionViewModel?> GetTransactionByIdAsync(Guid id);
-        Task<IList<TransactionViewModel>> GetTransactionsAsync(Pagination pagination);
+        Task<ICollection<TransactionViewModel>> GetTransactionsAsync();
+        Task<PageResponse<TransactionViewModel>> GetTransactionsWithPaginationAsync(PaginationRequest pagination);
         Task<IResult<TransactionViewModel>> ProcessTransactionAsync(TransactionViewModel transactionViewModel);
     }
 }

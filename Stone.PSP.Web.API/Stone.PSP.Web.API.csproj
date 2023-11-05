@@ -13,6 +13,8 @@
     <PackageReference Include="AspNetCore.HealthChecks.UI" Version="7.0.2" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="7.1.0" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="7.0.0" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.13" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
@@ -26,7 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Stone.PSP.Crosscutting\Stone.PSP.Crosscutting.csproj" />
     <ProjectReference Include="..\Stone.PSP.Infra\Stone.PSP.Infra.csproj" />
-    <ProjectReference Include="..\TransactionService\TransactionService.csproj" />
+    <ProjectReference Include="..\TransactionService\Stone.PSP.TransactionService.csproj" />
   </ItemGroup>
 
 </Project>

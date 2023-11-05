@@ -10,6 +10,12 @@ namespace TransactionService.ViewModels
         public string? Description { get; set; }
         public byte PaymentMethodCode { get; set; }
         public ClientViewModel Client { get; set; }
-        public CreditCardViewModel CreditCard { get; set; }       
+        public CreditCardViewModel CreditCard { get; set; }
+
+        public TransactionViewModel()
+        {
+            Client = new ClientViewModel();
+            CreditCard = new CreditCardViewModel();
+        }
     }
 }

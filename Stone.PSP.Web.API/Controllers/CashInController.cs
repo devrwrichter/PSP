@@ -27,13 +27,24 @@ namespace Stone.PSP.Web.API.Controllers
                 return NotFound();
         }
 
+        [HttpPost]
+        [Route("GetTransactionsWithPagination")]
+        public async Task<IActionResult> GetTransactionsWithPagination(PaginationRequest pagination)
+        {
+            var result = await _cashInService.GetTransactionsWithPaginationAsync(pagination);
+            if (result.Items.Any())
+                return Ok(result);
+            else
+                return NotFound();
+        }
+
         [HttpGet]
         [Route("GetTransactions")]
-        public async Task<IActionResult> GetTransactions(Pagination pagination)
+        public async Task<IActionResult> GetTransactions()
         {
-            var result = await _cashInService.GetTransactionsAsync(pagination);
-            if (result.Any())
-                return Ok(result);
+            ICollection<TransactionViewModel> transactions = await _cashInService.GetTransactionsAsync();
+            if (transactions.Any())
+                return Ok(transactions);
             else
                 return NotFound();
         }

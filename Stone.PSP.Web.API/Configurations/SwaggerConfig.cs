@@ -1,5 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 using Stone.PSP.Web.API.Swagger;
+using Stone.PSP.Web.API.SwaggerHelp;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace Stone.PSP.Web.API.Configurations
@@ -17,6 +18,7 @@ namespace Stone.PSP.Web.API.Configurations
                 c.ExampleFilters();
             });
             services.AddSwaggerExamplesFromAssemblyOf<TransactionViewModelExample>();
+            services.AddSwaggerExamplesFromAssemblyOf<PaginationExample>(); 
         }
     }
 }

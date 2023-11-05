@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using AutoMapper;
+using FluentValidation;
 using Stone.PSP.Crosscutting;
 using Stone.PSP.Domain.Entities;
 using Stone.PSP.Domain.GLPD;
@@ -14,11 +15,14 @@ namespace TransactionService.Services
         private IPayableDomainService _payableDomainService;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IValidator<PspTransaction> _transactionValidator;
+        private readonly IMapper _mapper;
 
-        public CashInService(IUnitOfWork unitOfWork, IPayableDomainService payableDomainService, IValidator<PspTransaction> transactionValidator)
+
+        public CashInService(IPayableDomainService payableDomainService, IUnitOfWork unitOfWork, IMapper mapper, IValidator<PspTransaction> transactionValidator)
         {
-            _unitOfWork = unitOfWork;
             _payableDomainService = payableDomainService;
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
             _transactionValidator = transactionValidator;
         }
 
@@ -44,10 +48,10 @@ namespace TransactionService.Services
                     },
                     CreditCard = new CreditCardViewModel
                     {
-                        CardHolder = model.CardHolder,
-                        CardNumber = model.CardNumber,
-                        CardValidateDate = model.CardExpirationDate,
-                        CardVerificationCode = model.CardVerificationCode
+                        Holder = model.CardHolder,
+                        Number = model.CardNumber,
+                        ValidateDate = model.CardExpirationDate,
+                        VerificationCode = model.CardVerificationCode
                     }
                 };
             }
@@ -98,18 +102,33 @@ namespace TransactionService.Services
                 PaymentMethodCode = transactionViewModel.PaymentMethodCode,
                 Value = transactionViewModel.Value,
                 Description = transactionViewModel.Description?.Trim(),
-                CardNumber = transactionViewModel.CreditCard.CardNumber.Trim().GetOfuscatedCreditCardNumber(),
-                CardHolder = transactionViewModel.CreditCard.CardHolder.Trim(),
-                CardExpirationDate = transactionViewModel.CreditCard.CardValidateDate,
-                CardVerificationCode = transactionViewModel.CreditCard.CardVerificationCode
+                CardNumber = transactionViewModel.CreditCard.Number.Trim().GetOfuscatedCreditCardNumber(),
+                CardHolder = transactionViewModel.CreditCard.Holder.Trim(),
+                CardExpirationDate = transactionViewModel.CreditCard.ValidateDate,
+                CardVerificationCode = transactionViewModel.CreditCard.VerificationCode
             };
         }
 
-        public async Task<IList<TransactionViewModel>> GetTransactionsAsync(Pagination pagination)
+        public async Task<PageResponse<TransactionViewModel>> GetTransactionsWithPaginationAsync(PaginationRequest pagination)
         {
-            IList<PspTransaction> transactions = await _unitOfWork.PspTransactionRepository.GetTransactionsAsync(pagination);
+            var transactions = await _unitOfWork.PspTransactionRepository.GetTransactionsAsync(pagination);
 
-            return null;
+            PageResponse<TransactionViewModel> page = new PageResponse<TransactionViewModel> {
+                Items = _mapper.Map<ICollection<TransactionViewModel>>(transactions.Items),
+                Pagination = new PaginationResponse
+                {
+                    PageNumber = pagination.PageNumber,
+                    PageSize = pagination.PageSize,
+                    TableCount = transactions.Count
+        }                
+            };
+            return page;
         }
+
+        public async Task<ICollection<TransactionViewModel>> GetTransactionsAsync()
+        {
+            var transactions = await _unitOfWork.PspTransactionRepository.GetTransactionsAsync();
+            return _mapper.Map<ICollection<TransactionViewModel>>(transactions);
+        }    
     }
 }

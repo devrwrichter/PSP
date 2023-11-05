@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using AutoMapper;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Stone.PSP.Domain.Entities;
 using Stone.PSP.Domain.Repositories;
@@ -8,6 +9,7 @@ using Stone.PSP.Domain.Validators;
 using Stone.PSP.Infra.Context;
 using Stone.PSP.Infra.Repositories;
 using Stone.PSP.Infra.UnitOfWork;
+using Stone.PSP.TransactionService.Automapper;
 using TransactionService.Services;
 
 namespace Stone.PSP.Web.API.Configurations
@@ -25,7 +27,14 @@ namespace Stone.PSP.Web.API.Configurations
             services.AddScoped<IPayableRepository, PayableRepository>();
             services.AddScoped<IDatabaseTransaction, EntityDatabaseTransaction>();
 
+            CinfigAutomapper(services);
             ConfigDatabase(services, configuration);
+        }
+
+        private static void CinfigAutomapper(IServiceCollection services)
+        {
+            IMapper mapper = AutomapperConfig.GetConfiguration().CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         private static void ConfigDatabase(IServiceCollection services, ConfigurationManager configuration)
