@@ -11,7 +11,6 @@ namespace TransactionService.Services
         {
             _payableRepository = payableRepository;
         }
-
         public async Task<ClientBalanceViewModel> GetBalanceAsync(Guid clientId)
         {
             var result = await _payableRepository.GetBalanceAsync(clientId);

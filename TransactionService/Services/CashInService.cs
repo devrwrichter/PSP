@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using Microsoft.Extensions.Logging;
 using Stone.PSP.Crosscutting;
 using Stone.PSP.Domain.DomainObjects;
 using Stone.PSP.Domain.Entities;
@@ -16,19 +17,28 @@ namespace TransactionService.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IValidator<PspTransaction> _transactionValidator;
         private readonly IMapper _mapper;
+        private readonly ILogger<CashInService> _logger;
 
-        public CashInService(IFeeConfigurationCacheService feeConfigurationCacheService, IUnitOfWork unitOfWork, IMapper mapper, IValidator<PspTransaction> transactionValidator)
+        public CashInService(ILogger<CashInService> logger, IFeeConfigurationCacheService feeConfigurationCacheService, IUnitOfWork unitOfWork, IMapper mapper, IValidator<PspTransaction> transactionValidator)
         {
             _feeConfigurationCacheService = feeConfigurationCacheService;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _transactionValidator = transactionValidator;
+            _logger = logger;
         }
 
         public async Task<TransactionViewModel?> GetTransactionByIdAsync(Guid id)
         {
-            var entity = await _unitOfWork.PspTransactionRepository.GetTransactionByIdAsync(id);
-            return _mapper.Map<TransactionViewModel>(entity);
+            try
+            {
+                var entity = await _unitOfWork.PspTransactionRepository.GetTransactionByIdAsync(id);
+                return _mapper.Map<TransactionViewModel>(entity);
+            }catch(Exception ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                throw;
+            }
         }        
 
         public async Task<IResult<TransactionViewModel>> ProcessTransactionAsync(TransactionViewModel transactionViewModel)
@@ -56,9 +66,10 @@ namespace TransactionService.Services
                     await _unitOfWork.PayableRepository.SaveAsync(payable);
                     await transaction.CommitAsync();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     await transaction.RollbackAsync();
+                    _logger.LogError(ex.Message);
                     throw;
                 }
             }
@@ -69,24 +80,39 @@ namespace TransactionService.Services
 
         public async Task<PageResponse<TransactionViewModel>> GetTransactionsWithPaginationAsync(PaginationRequest pagination)
         {
-            var transactions = await _unitOfWork.PspTransactionRepository.GetTransactionsAsync(pagination);
+            try
+            {
+                var transactions = await _unitOfWork.PspTransactionRepository.GetTransactionsAsync(pagination);
 
-            PageResponse<TransactionViewModel> page = new PageResponse<TransactionViewModel> {
-                Items = _mapper.Map<ICollection<TransactionViewModel>>(transactions.Items),
-                Pagination = new PaginationResponse
+                PageResponse<TransactionViewModel> page = new PageResponse<TransactionViewModel>
                 {
-                    PageNumber = pagination.PageNumber,
-                    PageSize = pagination.PageSize,
-                    TableCount = transactions.Count
-        }                
-            };
-            return page;
+                    Items = _mapper.Map<ICollection<TransactionViewModel>>(transactions.Items),
+                    Pagination = new PaginationResponse
+                    {
+                        PageNumber = pagination.PageNumber,
+                        PageSize = pagination.PageSize,
+                        TableCount = transactions.Count
+                    }
+                };
+                return page;
+            }catch(Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                throw;
+            }
         }
 
         public async Task<ICollection<TransactionViewModel>> GetTransactionsAsync()
         {
-            var transactions = await _unitOfWork.PspTransactionRepository.GetTransactionsAsync();
-            return _mapper.Map<ICollection<TransactionViewModel>>(transactions);
+            try
+            {
+                var transactions = await _unitOfWork.PspTransactionRepository.GetTransactionsAsync();
+                return _mapper.Map<ICollection<TransactionViewModel>>(transactions);
+            }catch(Exception ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                throw;
+            }
         }    
     }
 }
