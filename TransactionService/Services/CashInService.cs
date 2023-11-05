@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using Stone.PSP.Crosscutting;
+using Stone.PSP.Domain.DomainObjects;
 using Stone.PSP.Domain.Entities;
 using Stone.PSP.Domain.Services;
 using Stone.PSP.Domain.UnitOfWork;
@@ -11,15 +12,14 @@ namespace TransactionService.Services
 {
     public class CashInService : ICashInService
     {
-        private IPayableDomainService _payableDomainService;
+        private IFeeConfigurationCacheService _feeConfigurationCacheService;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IValidator<PspTransaction> _transactionValidator;
         private readonly IMapper _mapper;
 
-
-        public CashInService(IPayableDomainService payableDomainService, IUnitOfWork unitOfWork, IMapper mapper, IValidator<PspTransaction> transactionValidator)
+        public CashInService(IFeeConfigurationCacheService feeConfigurationCacheService, IUnitOfWork unitOfWork, IMapper mapper, IValidator<PspTransaction> transactionValidator)
         {
-            _payableDomainService = payableDomainService;
+            _feeConfigurationCacheService = feeConfigurationCacheService;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _transactionValidator = transactionValidator;
@@ -34,12 +34,19 @@ namespace TransactionService.Services
         public async Task<IResult<TransactionViewModel>> ProcessTransactionAsync(TransactionViewModel transactionViewModel)
         {
             var pspTransaction = _mapper.Map<PspTransaction>(transactionViewModel);
-            var payable = _payableDomainService.GetPayable(pspTransaction);
 
             var validationResult = await _transactionValidator.ValidateAsync(pspTransaction);
 
             if (!validationResult.IsValid)
                 return new Result<TransactionViewModel>(validationResult);
+
+            //Obtém as regras para criação do Payable
+            var feeConfig = _feeConfigurationCacheService.GetConfiguration();
+
+            PayableDomain payableDomain = new(pspTransaction, feeConfig);
+
+            //Obtém o payable com as regras aplicadas
+            var payable = payableDomain.GetPayable();
 
             using (var transaction = _unitOfWork.BeginTransaction())
             {
