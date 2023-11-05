@@ -129,7 +129,7 @@ namespace Stone.PSP.Domain.Test
         public void Validate_DescriptionInvalidLengthMin_ShouldBeError()
         {
             //Arrange
-            PspTransaction transactionTest = _transaction with { Description = "d".PadRight(TransactionValidator.MinLengthDescription-1) };
+            PspTransaction transactionTest = _transaction with { Description = "d".PadRight(TransactionValidator.MinLengthDescription - 1) };
 
             //Action
             var result = _validator.Validate(transactionTest);

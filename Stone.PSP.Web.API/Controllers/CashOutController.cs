@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Net;
 using TransactionService.Services;
-using TransactionService.ViewModels;
 
 namespace Stone.PSP.Web.API.Controllers
 {
@@ -28,7 +26,8 @@ namespace Stone.PSP.Web.API.Controllers
                     return Ok(balance);
                 else
                     return NotFound();
-            }catch(Exception)
+            }
+            catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, InternalServerError);
             }

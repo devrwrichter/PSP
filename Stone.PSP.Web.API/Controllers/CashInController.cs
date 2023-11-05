@@ -18,12 +18,13 @@ namespace Stone.PSP.Web.API.Controllers
 
         [HttpGet]
         [Route("GetById")]
-        public async Task<IActionResult> GetById(Guid id) {
+        public async Task<IActionResult> GetById(Guid id)
+        {
 
             var transaction = await _cashInService.GetTransactionByIdAsync(id);
-            if(transaction != null)
+            if (transaction != null)
                 return Ok(transaction);
-            else 
+            else
                 return NotFound();
         }
 
@@ -50,7 +51,7 @@ namespace Stone.PSP.Web.API.Controllers
         }
 
         [HttpPost]
-        [Route("ProcessTransaction")]        
+        [Route("ProcessTransaction")]
         public async Task<IActionResult> ProcessTransaction([FromBody] TransactionViewModel transaction)
         {
             try
@@ -60,7 +61,9 @@ namespace Stone.PSP.Web.API.Controllers
                     return BadRequest(result);
 
                 return new CreatedAtActionResult(nameof(GetById), "CashIn", new { id = result.Model?.TransactionId }, result.Model);
-            }catch(Exception) {
+            }
+            catch (Exception)
+            {
                 return StatusCode(StatusCodes.Status500InternalServerError, InternalServerError);
             }
 

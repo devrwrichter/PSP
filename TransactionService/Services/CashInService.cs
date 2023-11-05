@@ -34,12 +34,13 @@ namespace TransactionService.Services
             {
                 var entity = await _unitOfWork.PspTransactionRepository.GetTransactionByIdAsync(id);
                 return _mapper.Map<TransactionViewModel>(entity);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 _logger.LogError(ex.Message, ex);
                 throw;
             }
-        }        
+        }
 
         public async Task<IResult<TransactionViewModel>> ProcessTransactionAsync(TransactionViewModel transactionViewModel)
         {
@@ -95,7 +96,8 @@ namespace TransactionService.Services
                     }
                 };
                 return page;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
                 throw;
@@ -108,11 +110,12 @@ namespace TransactionService.Services
             {
                 var transactions = await _unitOfWork.PspTransactionRepository.GetTransactionsAsync();
                 return _mapper.Map<ICollection<TransactionViewModel>>(transactions);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 _logger.LogError(ex.Message, ex);
                 throw;
             }
-        }    
+        }
     }
 }

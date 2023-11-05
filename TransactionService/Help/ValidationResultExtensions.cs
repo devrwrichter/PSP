@@ -1,5 +1,4 @@
-﻿using CSharpFunctionalExtensions;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 
 namespace TransactionService.Help
 {

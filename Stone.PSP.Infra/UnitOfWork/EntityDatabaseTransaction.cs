@@ -9,9 +9,9 @@ namespace Stone.PSP.Domain.UnitOfWork
 
         public EntityDatabaseTransaction(PaymentContext context)
         {
-                _transaction = context.Database.BeginTransaction();
+            _transaction = context.Database.BeginTransaction();
         }
-        public async Task  CommitAsync()
+        public async Task CommitAsync()
         {
             await _transaction.CommitAsync();
         }

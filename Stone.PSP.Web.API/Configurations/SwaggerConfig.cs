@@ -9,7 +9,8 @@ namespace Stone.PSP.Web.API.Configurations
     {
         public static void ConfigureSwagger(this IServiceCollection services)
         {
-            services.AddSwaggerGen(c => {
+            services.AddSwaggerGen(c =>
+            {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
@@ -18,7 +19,7 @@ namespace Stone.PSP.Web.API.Configurations
                 c.ExampleFilters();
             });
             services.AddSwaggerExamplesFromAssemblyOf<TransactionViewModelExample>();
-            services.AddSwaggerExamplesFromAssemblyOf<PaginationExample>(); 
+            services.AddSwaggerExamplesFromAssemblyOf<PaginationExample>();
         }
     }
 }

@@ -12,8 +12,8 @@ namespace Stone.PSP.Infra.UnitOfWork
 
         public readonly IDatabaseTransaction _databaseTransaction;
 
-        public UnitOfWork(PaymentContext context, IPspTransactionRepository pspTransactionRepository, 
-            IPayableRepository payableRepository, 
+        public UnitOfWork(PaymentContext context, IPspTransactionRepository pspTransactionRepository,
+            IPayableRepository payableRepository,
             IDatabaseTransaction dataBaseTransaction)
         {
             _context = context;

@@ -14,7 +14,7 @@ namespace Stone.PSP.Web.API.Test
     {
         private readonly ICashOutService _cashOutService;
         private readonly Mock<IPayableRepository> _payableRepository;
-        private readonly Mock<ILogger<CashOutService>> _logger =  new Mock<ILogger<CashOutService>>();
+        private readonly Mock<ILogger<CashOutService>> _logger = new Mock<ILogger<CashOutService>>();
         private readonly CashOutController _cashOutController;
 
         public CashOutControllerApplicationTest()
@@ -32,13 +32,15 @@ namespace Stone.PSP.Web.API.Test
         }
 
         [Fact]
-        [Trait(name:"Integration test Cashout", "Flow Controller Application: OK")]
+        [Trait(name: "Integration test Cashout", "Flow Controller Application: OK")]
         public void GetBalance_ShouldBeOk()
         {
             //Arrange
             var clientBalance = new ClientBalance { Available = 10.0M, WaitingFunds = 8.0M };
-            var clientBalanceExpected = new ClientBalanceViewModel { 
-                Available = clientBalance.Available, WaitingFunds = clientBalance.WaitingFunds 
+            var clientBalanceExpected = new ClientBalanceViewModel
+            {
+                Available = clientBalance.Available,
+                WaitingFunds = clientBalance.WaitingFunds
             };
             _payableRepository.Setup(x => x.GetBalanceAsync(It.IsAny<Guid>())).ReturnsAsync(clientBalance);
 
@@ -47,8 +49,8 @@ namespace Stone.PSP.Web.API.Test
             var actionResult = _cashOutController.GetBalanceAsync(Guid.NewGuid());
 
             //Assert
-           actionResult.Result.Should().BeOfType<OkObjectResult>();
-           ((OkObjectResult)actionResult.Result).Value.Should().Be(clientBalanceExpected);
+            actionResult.Result.Should().BeOfType<OkObjectResult>();
+            ((OkObjectResult)actionResult.Result).Value.Should().Be(clientBalanceExpected);
         }
 
         [Fact]
@@ -56,7 +58,7 @@ namespace Stone.PSP.Web.API.Test
         public void GetBalance_NotFoundInDatabase_ShouldBeOk()
         {
             //Arrange
-            ClientBalance clientBalance = null;            
+            ClientBalance clientBalance = null;
             _payableRepository.Setup(x => x.GetBalanceAsync(It.IsAny<Guid>())).ReturnsAsync(clientBalance);
 
             //Action

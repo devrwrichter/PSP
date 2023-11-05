@@ -1,6 +1,6 @@
 ﻿namespace Stone.PSP.Domain.Entities
 {
-    public record Payable 
+    public record Payable
     {
         public Guid Id { get; init; }
         public Guid TransactionId { get; init; }

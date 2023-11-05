@@ -24,7 +24,7 @@ namespace Stone.PSP.Web.API.Test
         private readonly Mock<PaymentContext> _context = new Mock<PaymentContext>();
         private readonly Mock<IPspTransactionRepository> _pspTransactionRepository = new Mock<IPspTransactionRepository>();
         private readonly Mock<IPayableRepository> _payableRepository = new Mock<IPayableRepository>();
-        private IFeeConfigurationCacheService _feeConfigurationCacheService =  new FeeConfigurationCacheService();
+        private IFeeConfigurationCacheService _feeConfigurationCacheService = new FeeConfigurationCacheService();
         private readonly UnitOfWork _unitOfWork;
         private readonly Mock<IValidator<PspTransaction>> _transactionValidator = new Mock<IValidator<PspTransaction>>();
         private readonly IMapper _mapper;
@@ -76,10 +76,10 @@ namespace Stone.PSP.Web.API.Test
 
             _unitOfWork = new UnitOfWork(null, _pspTransactionRepository.Object, _payableRepository.Object, _dataBaseTransaction.Object);
 
-            _cashInService =  new CashInService(_logger.Object,
+            _cashInService = new CashInService(_logger.Object,
                 _feeConfigurationCacheService,
                 _unitOfWork,
-                _mapper, 
+                _mapper,
                 _transactionValidator.Object);
 
             _controller = new CashInController(_cashInService);
@@ -92,11 +92,11 @@ namespace Stone.PSP.Web.API.Test
             //Arrange
             _transactionValidator.Setup(x => x.ValidateAsync(It.IsAny<PspTransaction>(), It.IsAny<CancellationToken>())).ReturnsAsync(new FluentValidation.Results.ValidationResult());
             _pspTransactionRepository.Setup(x => x.SaveAsync(It.IsAny<PspTransaction>())).Returns(Task.CompletedTask);
-            _payableRepository.Setup(x => x.SaveAsync(It.IsAny<Payable>())).Returns(Task.CompletedTask);            
+            _payableRepository.Setup(x => x.SaveAsync(It.IsAny<Payable>())).Returns(Task.CompletedTask);
 
             //Action
             var actionResult = await _controller.ProcessTransaction(_transaction);
-            CreatedAtActionResult result =  actionResult as CreatedAtActionResult;
+            CreatedAtActionResult result = actionResult as CreatedAtActionResult;
             TransactionViewModel vm = (TransactionViewModel)result.Value;
 
             //Assert
@@ -108,17 +108,18 @@ namespace Stone.PSP.Web.API.Test
         public async Task ProcessTransaction_ValidationErrors_ExpectedBadRequest()
         {
             //Arrange
-            _transactionValidator.Setup(x => x.ValidateAsync(It.IsAny<PspTransaction>(), It.IsAny<CancellationToken>())).ReturnsAsync(new FluentValidation.Results.ValidationResult() { 
-                Errors =  new List<ValidationFailure> { 
-                    new ValidationFailure { ErrorMessage = "Erro" } 
-                } 
+            _transactionValidator.Setup(x => x.ValidateAsync(It.IsAny<PspTransaction>(), It.IsAny<CancellationToken>())).ReturnsAsync(new FluentValidation.Results.ValidationResult()
+            {
+                Errors = new List<ValidationFailure> {
+                    new ValidationFailure { ErrorMessage = "Erro" }
+                }
             });
             _pspTransactionRepository.Setup(x => x.SaveAsync(It.IsAny<PspTransaction>())).Returns(Task.CompletedTask);
             _payableRepository.Setup(x => x.SaveAsync(It.IsAny<Payable>())).Returns(Task.CompletedTask);
 
             //Action
             var actionResult = await _controller.ProcessTransaction(_transaction);
-           
+
 
             //Assert
             actionResult.Should().BeOfType<BadRequestObjectResult>();
@@ -135,7 +136,7 @@ namespace Stone.PSP.Web.API.Test
 
             //Action
             Func<Task> fn = async () => { await _controller.ProcessTransaction(_transaction); };
-            
+
             //Assert
             fn.Should().ThrowAsync<Exception>();
             _logger.Verify(x => x.Log(

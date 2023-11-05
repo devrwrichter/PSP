@@ -32,7 +32,7 @@ namespace Stone.PSP.Infra.Repositories
 
             using (var connection = _dapperContext.CreateConnection())
             {
-                var result = await connection.QuerySingleAsync<ClientBalance>(query,new { clientId});
+                var result = await connection.QuerySingleAsync<ClientBalance>(query, new { clientId });
                 return result;
             }
         }

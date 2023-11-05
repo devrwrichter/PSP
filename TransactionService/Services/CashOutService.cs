@@ -23,7 +23,8 @@ namespace TransactionService.Services
                     return new ClientBalanceViewModel { Available = result.Available, WaitingFunds = result.WaitingFunds };
                 else
                     return null;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
                 throw;

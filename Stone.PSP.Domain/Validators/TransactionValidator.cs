@@ -25,7 +25,8 @@ namespace Stone.PSP.Domain.Validators
 
         #endregion
 
-        public TransactionValidator() {
+        public TransactionValidator()
+        {
             this.RuleFor(x => x.Value).GreaterThan(decimal.Zero).WithMessage(ErrorValueIsMinorOrEqualThanZero);
             this.RuleFor(x => x.CardHolder).NotEmpty().WithMessage(ErrorCardHolderEmpty);
             this.RuleFor(x => x.ClientId).Must(x => IsClientIdNotEmpty(x)).WithMessage(ErrorInvalidClientId);
