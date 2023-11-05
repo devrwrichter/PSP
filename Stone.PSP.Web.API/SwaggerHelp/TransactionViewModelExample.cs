@@ -20,7 +20,7 @@ namespace Stone.PSP.Web.API.Swagger
                 {
                     Number = "5452 4631 0836 7683",
                     Holder = "Portador do cartão de crédito",
-                    ValidateDate = new DateTime(2040, 01, 01),
+                    ExpirationDate = new DateTime(2040, 01, 01),
                     VerificationCode = "123"
                 }
             };

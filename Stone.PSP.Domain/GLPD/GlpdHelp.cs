@@ -12,7 +12,7 @@ namespace Stone.PSP.Domain.GLPD
         /// <param name="creditCardNumber"></param>
         /// <returns>string</returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public static string GetOfuscatedCreditCardNumber(this string creditCardNumber)
+        public static string GetOfuscatedCreditCardNumber(this string? creditCardNumber)
         {
             if (string.IsNullOrEmpty(creditCardNumber))
             {
