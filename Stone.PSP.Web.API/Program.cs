@@ -14,15 +14,12 @@ builder.Services.RegisterServices(builder.Configuration);
 builder.Services.ConfigureHealthChecks(builder.Configuration);
 
 var logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(new ConfigurationBuilder()
-    .AddJsonFile("seri-log.config.json")
-    .Build())
-    .Enrich.FromLogContext()
+    .ReadFrom.Configuration(builder.Configuration)
     .CreateLogger();
 
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(logger);
-
+builder.Host.UseSerilog();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
