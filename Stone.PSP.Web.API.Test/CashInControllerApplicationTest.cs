@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentAssertions;
 using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -13,7 +14,6 @@ using Stone.PSP.Infra.Context;
 using Stone.PSP.Infra.UnitOfWork;
 using Stone.PSP.TransactionService.Automapper;
 using Stone.PSP.Web.API.Controllers;
-using System.Runtime.CompilerServices;
 using TransactionService.Services;
 using TransactionService.ViewModels;
 
@@ -86,7 +86,8 @@ namespace Stone.PSP.Web.API.Test
         }
 
         [Fact]
-        public async Task ProcessTransaction()
+        [Trait(name: "Integration test CashIn", "Flow Controller Application: ok")]
+        public async Task ProcessTransaction_ShouldBeOk()
         {
             //Arrange
             _transactionValidator.Setup(x => x.ValidateAsync(It.IsAny<PspTransaction>(), It.IsAny<CancellationToken>())).ReturnsAsync(new FluentValidation.Results.ValidationResult());
@@ -100,6 +101,49 @@ namespace Stone.PSP.Web.API.Test
 
             //Assert
             vm.Should().BeEquivalentTo(_expectedTransaction, opt => opt.Excluding(x => x.TransactionId).Excluding(x => x.Client));
+        }
+
+        [Fact]
+        [Trait(name: "Integration test CashIn", "Flow Controller Application: Validation Behavior when has errors")]
+        public async Task ProcessTransaction_ValidationErrors_ExpectedBadRequest()
+        {
+            //Arrange
+            _transactionValidator.Setup(x => x.ValidateAsync(It.IsAny<PspTransaction>(), It.IsAny<CancellationToken>())).ReturnsAsync(new FluentValidation.Results.ValidationResult() { 
+                Errors =  new List<ValidationFailure> { 
+                    new ValidationFailure { ErrorMessage = "Erro" } 
+                } 
+            });
+            _pspTransactionRepository.Setup(x => x.SaveAsync(It.IsAny<PspTransaction>())).Returns(Task.CompletedTask);
+            _payableRepository.Setup(x => x.SaveAsync(It.IsAny<Payable>())).Returns(Task.CompletedTask);
+
+            //Action
+            var actionResult = await _controller.ProcessTransaction(_transaction);
+           
+
+            //Assert
+            actionResult.Should().BeOfType<BadRequestObjectResult>();
+        }
+
+        [Fact]
+        [Trait(name: "Integration test CashIn", "Flow Controller Application: Error 500")]
+        public async Task ProcessTransaction_DatabaseOut_ExpectedInternalServerErrorAndRollback()
+        {
+            //Arrange
+            _transactionValidator.Setup(x => x.ValidateAsync(It.IsAny<PspTransaction>(), It.IsAny<CancellationToken>())).ReturnsAsync(new ValidationResult());
+            _pspTransactionRepository.Setup(x => x.SaveAsync(It.IsAny<PspTransaction>())).Returns(Task.CompletedTask);
+            _payableRepository.Setup(x => x.SaveAsync(It.IsAny<Payable>())).ThrowsAsync(new Exception());
+
+            //Action
+            Func<Task> fn = async () => { await _controller.ProcessTransaction(_transaction); };
+            
+            //Assert
+            fn.Should().ThrowAsync<Exception>();
+            _logger.Verify(x => x.Log(
+                LogLevel.Error,
+                It.IsAny<EventId>(),
+                It.IsAny<It.IsAnyType>(),
+                It.IsAny<Exception>(),
+                It.IsAny<Func<It.IsAnyType, Exception?, string>>()), Times.Once);
         }
 
     }

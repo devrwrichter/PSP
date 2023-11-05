@@ -32,7 +32,7 @@ namespace Stone.PSP.Web.API.Test
         }
 
         [Fact]
-        [Trait(name:"Integration test", "Flow Controller Application: OK")]
+        [Trait(name:"Integration test Cashout", "Flow Controller Application: OK")]
         public void GetBalance_ShouldBeOk()
         {
             //Arrange
@@ -52,7 +52,7 @@ namespace Stone.PSP.Web.API.Test
         }
 
         [Fact]
-        [Trait(name: "Integration test", "Flow Controller Application: NotFound")]
+        [Trait(name: "Integration test cashOut", "Flow Controller Application: NotFound")]
         public void GetBalance_NotFoundInDatabase_ShouldBeOk()
         {
             //Arrange
@@ -67,7 +67,7 @@ namespace Stone.PSP.Web.API.Test
         }
 
         [Fact]
-        [Trait(name: "Integration test", "Flow Controller Application: 500")]
+        [Trait(name: "Integration test cashOut", "Flow Controller Application: 500")]
         public void GetBalance_ThrowExceptionOnRepository_ShouldBeOk()
         {
             //Arrange
