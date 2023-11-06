@@ -31,7 +31,6 @@ app.UseAuthentication();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapHealthChecks("health");
-
 app.UseHealthChecks("/health", new HealthCheckOptions
 {
     Predicate = p => true,

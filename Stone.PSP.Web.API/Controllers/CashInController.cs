@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Stone.PSP.Crosscutting;
+using Stone.PSP.Domain.Enumerators;
 using TransactionService.Services;
 using TransactionService.ViewModels;
 
@@ -20,12 +21,39 @@ namespace Stone.PSP.Web.API.Controllers
         [Route("GetById")]
         public async Task<IActionResult> GetById(Guid id)
         {
-
             var transaction = await _cashInService.GetTransactionByIdAsync(id);
             if (transaction != null)
                 return Ok(transaction);
             else
                 return NotFound();
+        }
+
+        [HttpGet]
+        [Route("GetPaymentMethods")]
+        public IActionResult GetPaymentMethods()
+        {
+            IList<string> paymentMethods = new List<string>();
+
+            foreach (var pm in Enum.GetValues(typeof(PaymentMethodCodeType)))
+            {
+                paymentMethods.Add($"{(int)pm}-{pm}");
+            }
+
+            return Ok(paymentMethods);
+        }
+
+        [HttpGet]
+        [Route("GetPayableStatus")]
+        public IActionResult GetPayableStatus()
+        {
+            IList<string> statusTypes = new List<string>();
+
+            foreach (var pm in Enum.GetValues(typeof(PayableStatusType)))
+            {
+                statusTypes.Add($"{(int)pm}-{pm}");
+            }
+
+            return Ok(statusTypes);
         }
 
         [HttpPost]

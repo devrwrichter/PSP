@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.6'
 
 services:
   stone.psp.web.api:
@@ -15,7 +15,8 @@ services:
     environment:
       ACCEPT_EULA: 'Y'
       MSSQL_SA_PASSWORD: "Psp@2023@ps"
-    volumes:
+    
+    volumes:       
         - c:\dados\volumes\mssql:/var/opt/mssql3  
     ports:
         - '1433:1433'    

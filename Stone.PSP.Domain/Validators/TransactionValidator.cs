@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Stone.PSP.Domain.Entities;
 using Stone.PSP.Domain.Enumerators;
+using System.Text.RegularExpressions;
 
 namespace Stone.PSP.Domain.Validators
 {
@@ -77,7 +78,8 @@ namespace Stone.PSP.Domain.Validators
 
         private bool IsValidCardVerificationCode(string cvc)
         {
-            return cvc.Length >= 3 && cvc.Length <= 4;
+            var onlyNumbers = cvc.All(c => char.IsDigit(c));
+            return cvc.Length >= 3 && cvc.Length <= 4 && onlyNumbers == true;
         }
     }
 }

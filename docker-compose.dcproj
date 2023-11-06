@@ -9,6 +9,9 @@
     <DockerServiceName>stone.psp.web.api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Develop.postman_environment.json" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
     </None>

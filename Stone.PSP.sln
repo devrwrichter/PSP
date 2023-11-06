@@ -35,6 +35,12 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9A13DD29-3C57-4765-BB42-CF88892A38E1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Postman", "Postman", "{58A687A9-75EB-4BD8-87EB-17BFF7CD5C55}"
+	ProjectSection(SolutionItems) = preProject
+		Develop.postman_environment.json = Develop.postman_environment.json
+		Payment Service Provider.postman_collection.json = Payment Service Provider.postman_collection.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,6 +96,7 @@ Global
 		{64568DC3-CE1A-410E-9C5D-5C9B8152BF76} = {DA7F38D7-DB1F-4DB9-8CD5-2D2B590C85C8}
 		{81B6F968-3E04-4A78-94BC-F5BC5F3C6A39} = {59810624-3041-4281-80A9-5921CA3CB677}
 		{B68D2451-7DFC-4D32-82FB-103E58E73488} = {DA7F38D7-DB1F-4DB9-8CD5-2D2B590C85C8}
+		{58A687A9-75EB-4BD8-87EB-17BFF7CD5C55} = {9A13DD29-3C57-4765-BB42-CF88892A38E1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B1206D7D-EB78-4EE6-BBEB-8074CBCE90AD}
