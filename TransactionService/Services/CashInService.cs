@@ -15,11 +15,11 @@ namespace TransactionService.Services
     {
         private IFeeConfigurationCacheService _feeConfigurationCacheService;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IValidator<PspTransaction> _transactionValidator;
+        private readonly IValidator<Transaction> _transactionValidator;
         private readonly IMapper _mapper;
         private readonly ILogger<CashInService> _logger;
 
-        public CashInService(ILogger<CashInService> logger, IFeeConfigurationCacheService feeConfigurationCacheService, IUnitOfWork unitOfWork, IMapper mapper, IValidator<PspTransaction> transactionValidator)
+        public CashInService(ILogger<CashInService> logger, IFeeConfigurationCacheService feeConfigurationCacheService, IUnitOfWork unitOfWork, IMapper mapper, IValidator<Transaction> transactionValidator)
         {
             _feeConfigurationCacheService = feeConfigurationCacheService;
             _unitOfWork = unitOfWork;
@@ -44,7 +44,7 @@ namespace TransactionService.Services
 
         public async Task<IResult<TransactionViewModel>> ProcessTransactionAsync(TransactionViewModel transactionViewModel)
         {
-            var pspTransaction = _mapper.Map<PspTransaction>(transactionViewModel);
+            var pspTransaction = _mapper.Map<Transaction>(transactionViewModel);
 
             var validationResult = await _transactionValidator.ValidateAsync(pspTransaction);
 

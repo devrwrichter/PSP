@@ -8,6 +8,7 @@ namespace Stone.PSP.Infra.Mappings
     {
         public void Configure(EntityTypeBuilder<Payable> builder)
         {
+            builder.ToTable("Payables");
             builder.HasKey(c => c.Id);
             builder.Property(x => x.PaymentDate).HasColumnType("datetime").IsRequired();
             builder.Property(x => x.TransactionId).IsRequired();

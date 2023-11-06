@@ -8,8 +8,8 @@ namespace Stone.PSP.Domain.Test
 {
     public class TransactionValidatorTest
     {
-        private readonly IValidator<PspTransaction> _validator = new TransactionValidator();
-        private PspTransaction _transaction = new()
+        private readonly IValidator<Transaction> _validator = new TransactionValidator();
+        private Transaction _transaction = new()
         {
             Value = 500.0M,
             CardExpirationDate = DateTime.Today.AddYears(5),
@@ -25,7 +25,7 @@ namespace Stone.PSP.Domain.Test
         public void Validate_ValueZero_ShouldBeError()
         {
             //Arrange
-            PspTransaction transactionTest = _transaction with { Value = 0.0M };
+            Transaction transactionTest = _transaction with { Value = 0.0M };
 
             //Action
             var result = _validator.Validate(transactionTest);
@@ -38,7 +38,7 @@ namespace Stone.PSP.Domain.Test
         public void Validate_CardExpirationDate_ShouldBeError()
         {
             //Arrange
-            PspTransaction transactionTest = _transaction with { CardExpirationDate = DateTime.Today.AddDays(-5) };
+            Transaction transactionTest = _transaction with { CardExpirationDate = DateTime.Today.AddDays(-5) };
 
             //Action
             var result = _validator.Validate(transactionTest);
@@ -51,7 +51,7 @@ namespace Stone.PSP.Domain.Test
         public void Validate_CardHolder_ShouldBeError()
         {
             //Arrange
-            PspTransaction transactionTest = _transaction with { CardHolder = string.Empty };
+            Transaction transactionTest = _transaction with { CardHolder = string.Empty };
 
             //Action
             var result = _validator.Validate(transactionTest);
@@ -64,7 +64,7 @@ namespace Stone.PSP.Domain.Test
         public void Validate_CardVerificationCodeMinor_ShouldBeError()
         {
             //Arrange
-            PspTransaction transactionTest = _transaction with { CardVerificationCode = "1" };
+            Transaction transactionTest = _transaction with { CardVerificationCode = "1" };
 
             //Action
             var result = _validator.Validate(transactionTest);
@@ -77,7 +77,7 @@ namespace Stone.PSP.Domain.Test
         public void Validate_CardVerificationCodeMajor_ShouldBeError()
         {
             //Arrange
-            PspTransaction transactionTest = _transaction with { CardVerificationCode = "55555" };
+            Transaction transactionTest = _transaction with { CardVerificationCode = "55555" };
 
             //Action
             var result = _validator.Validate(transactionTest);
@@ -90,7 +90,7 @@ namespace Stone.PSP.Domain.Test
         public void Validate_CardNumberEmpty_ShouldBeError()
         {
             //Arrange
-            PspTransaction transactionTest = _transaction with { CardNumber = string.Empty };
+            Transaction transactionTest = _transaction with { CardNumber = string.Empty };
 
             //Action
             var result = _validator.Validate(transactionTest);
@@ -103,7 +103,7 @@ namespace Stone.PSP.Domain.Test
         public void Validate_ClientIdEmpty_ShouldBeError()
         {
             //Arrange
-            PspTransaction transactionTest = _transaction with { ClientId = Guid.Empty };
+            Transaction transactionTest = _transaction with { ClientId = Guid.Empty };
 
             //Action
             var result = _validator.Validate(transactionTest);
@@ -116,7 +116,7 @@ namespace Stone.PSP.Domain.Test
         public void Validate_DescriptionEmpty_ShouldBeError()
         {
             //Arrange
-            PspTransaction transactionTest = _transaction with { ClientId = Guid.Empty };
+            Transaction transactionTest = _transaction with { ClientId = Guid.Empty };
 
             //Action
             var result = _validator.Validate(transactionTest);
@@ -129,7 +129,7 @@ namespace Stone.PSP.Domain.Test
         public void Validate_DescriptionInvalidLengthMin_ShouldBeError()
         {
             //Arrange
-            PspTransaction transactionTest = _transaction with { Description = "d".PadRight(TransactionValidator.MinLengthDescription - 1) };
+            Transaction transactionTest = _transaction with { Description = "d".PadRight(TransactionValidator.MinLengthDescription - 1) };
 
             //Action
             var result = _validator.Validate(transactionTest);
@@ -142,7 +142,7 @@ namespace Stone.PSP.Domain.Test
         public void Validate_DescriptionInvalidLengthMax_ShouldBeError()
         {
             //Arrange
-            PspTransaction transactionTest = _transaction with { Description = "d".PadRight(TransactionValidator.MaxLengthDescription + 1) };
+            Transaction transactionTest = _transaction with { Description = "d".PadRight(TransactionValidator.MaxLengthDescription + 1) };
 
             //Action
             var result = _validator.Validate(transactionTest);
@@ -155,7 +155,7 @@ namespace Stone.PSP.Domain.Test
         public void Validate_PaymentCodeInvalidValue_ShouldBeError()
         {
             //Arrange
-            PspTransaction transactionTest = _transaction with { PaymentMethodCode = (byte)3 };
+            Transaction transactionTest = _transaction with { PaymentMethodCode = (byte)3 };
 
             //Action
             var result = _validator.Validate(transactionTest);
@@ -168,7 +168,7 @@ namespace Stone.PSP.Domain.Test
         public void Validate_AllErrors_ShouldBeError()
         {
             //Arrange
-            PspTransaction transactionTest = new();
+            Transaction transactionTest = new();
 
             //Action
             var result = _validator.Validate(transactionTest);

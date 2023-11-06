@@ -1,6 +1,8 @@
 # PSP
 Construção de uma versão super simplificada de um Payment Service Provider (PSP) e talvez aprender um pouco mais sobre como funcionam pagamentos no Brasil.
 
+Oi! Tudo bem? Espero que sim, abaixo estão as informações! 
+
 Como executar o projeto?
 
 	1 - Abra a solution Stone.PSP.sln
@@ -54,4 +56,4 @@ Como executar o projeto?
 	Algumas vezes pode dar erro na criação dos containeres, mas é só restar, ou deletar o container que "sobrou" no docker e startar de novo.
 
 
-
+	Boa sorte! Um forte abraço.

@@ -5,9 +5,9 @@ namespace Stone.PSP.Domain.Repositories
 {
     public interface IPspTransactionRepository
     {
-        Task<PspTransaction?> GetTransactionByIdAsync(Guid id);
-        Task<(int Count, IEnumerable<PspTransaction> Items)> GetTransactionsAsync(PaginationRequest pagination);
-        Task<IEnumerable<PspTransaction>> GetTransactionsAsync();
-        Task SaveAsync(PspTransaction pspTransaction);
+        Task<Transaction?> GetTransactionByIdAsync(Guid id);
+        Task<(int Count, IEnumerable<Transaction> Items)> GetTransactionsAsync(PaginationRequest pagination);
+        Task<IEnumerable<Transaction>> GetTransactionsAsync();
+        Task SaveAsync(Transaction pspTransaction);
     }
 }
