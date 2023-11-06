@@ -1,0 +1,1036 @@
+{
+	"info": {
+		"_postman_id": "fde7976a-d59a-4435-ad7d-5e3bbf469ac7",
+		"name": "Payment Service Provider",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4029002"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "CashIn",
+					"item": [
+						{
+							"name": "GetById",
+							"item": [
+								{
+									"name": "/api/CashIn/GetById",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/CashIn/GetById?id=749146d0-3e3c-4241-aef3-ba826ffe5554",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"CashIn",
+												"GetById"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "749146d0-3e3c-4241-aef3-ba826ffe5554"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/CashIn/GetById?id=<uuid>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"CashIn",
+														"GetById"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<uuid>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "GetTransactionsWithPagination",
+							"item": [
+								{
+									"name": "/api/CashIn/GetTransactionsWithPagination",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"pageSize\": 10,\n  \"pageNumber\": 1\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/CashIn/GetTransactionsWithPagination",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"CashIn",
+												"GetTransactionsWithPagination"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"pageSize\": \"<integer>\",\n  \"pageNumber\": \"<integer>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/CashIn/GetTransactionsWithPagination",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"CashIn",
+														"GetTransactionsWithPagination"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "GetTransactions",
+							"item": [
+								{
+									"name": "/api/CashIn/GetTransactions",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/CashIn/GetTransactions",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"CashIn",
+												"GetTransactions"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/CashIn/GetTransactions",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"CashIn",
+														"GetTransactions"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "ProcessTransaction",
+							"item": [
+								{
+									"name": "/api/CashIn/ProcessTransaction",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"value\": \"<double>\",\n  \"description\": \"<string>\",\n  \"paymentMethodCode\": \"<integer>\",\n  \"client\": {\n    \"id\": \"<uuid>\"\n  },\n  \"creditCard\": {\n    \"expirationDate\": \"<dateTime>\",\n    \"holder\": \"<string>\",\n    \"number\": \"<string>\",\n    \"verificationCode\": \"<string>\"\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/CashIn/ProcessTransaction",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"CashIn",
+												"ProcessTransaction"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"value\": \"<double>\",\n  \"description\": \"<string>\",\n  \"paymentMethodCode\": \"<integer>\",\n  \"client\": {\n    \"id\": \"<uuid>\"\n  },\n  \"creditCard\": {\n    \"expirationDate\": \"<dateTime>\",\n    \"holder\": \"<string>\",\n    \"number\": \"<string>\",\n    \"verificationCode\": \"<string>\"\n  }\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/CashIn/ProcessTransaction",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"CashIn",
+														"ProcessTransaction"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "ok",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"value\": 100.5,\n  \"description\": \"Smartband XYZ 3.0\",\n  \"paymentMethodCode\": 1,\n  \"client\": {\n    \"id\": \"749146d0-3e3c-4241-aef3-ba826ffe5554\"\n  },\n  \"creditCard\": {\n    \"number\": \"5452 4631 0836 7683\",\n    \"holder\": \"Portador do cartão de crédito\",\n    \"verificationCode\": \"123\",\n    \"expirationDate\": \"2040-01-01T00:00:00\"\n  }\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/CashIn/ProcessTransaction",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"CashIn",
+														"ProcessTransaction"
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 06 Nov 2023 04:45:55 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Location",
+													"value": "https://localhost:52961/api/CashIn/GetById?id=7441c4a3-b2d5-4e4c-986f-bd70d3d72bcf"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"value\": 100.5,\n    \"description\": \"Smartband XYZ 3.0\",\n    \"paymentMethodCode\": 1,\n    \"client\": {\n        \"id\": \"749146d0-3e3c-4241-aef3-ba826ffe5554\"\n    },\n    \"creditCard\": {\n        \"number\": \"7683\",\n        \"holder\": \"Portador do cartão de crédito\",\n        \"verificationCode\": \"123\",\n        \"expirationDate\": \"2040-01-01T00:00:00\"\n    }\n}"
+										},
+										{
+											"name": "EmptyValue",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"value\": 0.0,\n  \"description\": \"Smartband XYZ 3.0\",\n  \"paymentMethodCode\": 1,\n  \"client\": {\n    \"id\": \"749146d0-3e3c-4241-aef3-ba826ffe5554\"\n  },\n  \"creditCard\": {\n    \"number\": \"5452 4631 0836 7683\",\n    \"holder\": \"Portador do cartão de crédito\",\n    \"verificationCode\": \"123\",\n    \"expirationDate\": \"2040-01-01T00:00:00\"\n  }\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/CashIn/ProcessTransaction",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"CashIn",
+														"ProcessTransaction"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 06 Nov 2023 04:46:42 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"errors\": [\n        \"O valor precisa ser superior a 0.0.\"\n    ],\n    \"model\": null,\n    \"success\": false\n}"
+										},
+										{
+											"name": "InvalidPaymentCode",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"value\": 100.5,\n  \"description\": \"Smartband XYZ 3.0\",\n  \"paymentMethodCode\": 0,\n  \"client\": {\n    \"id\": \"749146d0-3e3c-4241-aef3-ba826ffe5554\"\n  },\n  \"creditCard\": {\n    \"number\": \"5452 4631 0836 7683\",\n    \"holder\": \"Portador do cartão de crédito\",\n    \"verificationCode\": \"123\",\n    \"expirationDate\": \"2040-01-01T00:00:00\"\n  }\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/CashIn/ProcessTransaction",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"CashIn",
+														"ProcessTransaction"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 06 Nov 2023 04:47:25 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"errors\": [\n        \"Não existe essa forma de pagamento, favor informar 1 para Crédito ou 2 para Débito.\"\n    ],\n    \"model\": null,\n    \"success\": false\n}"
+										},
+										{
+											"name": "EmptyCreditCard",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"value\": 100.5,\n  \"description\": \"Smartband XYZ 3.0\",\n  \"paymentMethodCode\": 1,\n  \"client\": {\n    \"id\": \"749146d0-3e3c-4241-aef3-ba826ffe5554\"\n  },\n  \"creditCard\": {\n    \"number\": \"\",\n    \"holder\": \"Portador do cartão de crédito\",\n    \"verificationCode\": \"123\",\n    \"expirationDate\": \"2040-01-01T00:00:00\"\n  }\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/CashIn/ProcessTransaction",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"CashIn",
+														"ProcessTransaction"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/problem+json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 06 Nov 2023 04:49:39 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"traceId\": \"00-a5ee1d675fcd78322fe3fa88446f9bec-5a5b9ba9c7e3f64e-00\",\n    \"errors\": {\n        \"CreditCard.Number\": [\n            \"Número do cartão de crédito é necessário.\"\n        ]\n    }\n}"
+										},
+										{
+											"name": "InvalidCreditCard",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"value\": 100.5,\n  \"description\": \"Smartband XYZ 3.0\",\n  \"paymentMethodCode\": 1,\n  \"client\": {\n    \"id\": \"749146d0-3e3c-4241-aef3-ba826ffe5554\"\n  },\n  \"creditCard\": {\n    \"number\": \"S452 4631 0836 7683\",\n    \"holder\": \"Portador do cartão de crédito\",\n    \"verificationCode\": \"123\",\n    \"expirationDate\": \"2040-01-01T00:00:00\"\n  }\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/CashIn/ProcessTransaction",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"CashIn",
+														"ProcessTransaction"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/problem+json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 06 Nov 2023 04:50:25 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"traceId\": \"00-5828674fcb0d8162f4ba12f03228d019-bef84baba2eb3c81-00\",\n    \"errors\": {\n        \"CreditCard.Number\": [\n            \"Esse número de cartão de crédito é inválido.\"\n        ]\n    }\n}"
+										},
+										{
+											"name": "EmptyHolder",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"value\": 100.5,\n  \"description\": \"Smartband XYZ 3.0\",\n  \"paymentMethodCode\": 1,\n  \"client\": {\n    \"id\": \"749146d0-3e3c-4241-aef3-ba826ffe5554\"\n  },\n  \"creditCard\": {\n    \"number\": \"5452 4631 0836 7683\",\n    \"holder\": \"\",\n    \"verificationCode\": \"123\",\n    \"expirationDate\": \"2040-01-01T00:00:00\"\n  }\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/CashIn/ProcessTransaction",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"CashIn",
+														"ProcessTransaction"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/problem+json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 06 Nov 2023 04:51:14 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"traceId\": \"00-6422c57cce27db21bd6b9481519f823a-c39391e8a3193dd8-00\",\n    \"errors\": {\n        \"CreditCard.Holder\": [\n            \"Nome do portador do cartão é necessário.\"\n        ]\n    }\n}"
+										},
+										{
+											"name": "InvalidVerificationCode",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"value\": 100.5,\n  \"description\": \"Smartband XYZ 3.0\",\n  \"paymentMethodCode\": 1,\n  \"client\": {\n    \"id\": \"749146d0-3e3c-4241-aef3-ba826ffe5554\"\n  },\n  \"creditCard\": {\n    \"number\": \"5452 4631 0836 7683\",\n    \"holder\": \"Portador do cartão de crédito\",\n    \"verificationCode\": \"78777\",\n    \"expirationDate\": \"2040-01-01T00:00:00\"\n  }\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/CashIn/ProcessTransaction",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"CashIn",
+														"ProcessTransaction"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 06 Nov 2023 04:52:25 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"errors\": [\n        \"O código de verificação é inválido.\"\n    ],\n    \"model\": null,\n    \"success\": false\n}"
+										},
+										{
+											"name": "IvalidExpirationDate",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"value\": 100.5,\n  \"description\": \"Smartband XYZ 3.0\",\n  \"paymentMethodCode\": 1,\n  \"client\": {\n    \"id\": \"749146d0-3e3c-4241-aef3-ba826ffe5554\"\n  },\n  \"creditCard\": {\n    \"number\": \"5452 4631 0836 7683\",\n    \"holder\": \"Portador do cartão de crédito\",\n    \"verificationCode\": \"7777\",\n    \"expirationDate\": \"2010-01-01T00:00:00\"\n  }\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/CashIn/ProcessTransaction",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"CashIn",
+														"ProcessTransaction"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 06 Nov 2023 04:53:06 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"errors\": [\n        \"A data de validade do cartão precisa ser maior que a data atual.\"\n    ],\n    \"model\": null,\n    \"success\": false\n}"
+										},
+										{
+											"name": "NotExistThisPaymentMethod",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"value\": 100.5,\n  \"description\": \"Smartband XYZ 3.0\",\n  \"paymentMethodCode\": 0,\n  \"client\": {\n    \"id\": \"749146d0-3e3c-4241-aef3-ba826ffe5554\"\n  },\n  \"creditCard\": {\n    \"number\": \"5452 4631 0836 7683\",\n    \"holder\": \"Portador do cartão de crédito\",\n    \"verificationCode\": \"7777\",\n    \"expirationDate\": \"2040-01-01T00:00:00\"\n  }\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/CashIn/ProcessTransaction",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"CashIn",
+														"ProcessTransaction"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 06 Nov 2023 05:32:54 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"errors\": [\n        \"Não existe essa forma de pagamento, favor informar 1 para Crédito ou 2 para Débito.\"\n    ],\n    \"model\": null,\n    \"success\": false\n}"
+										},
+										{
+											"name": "InvalidCardVerificationCode",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"value\": 100.5,\n  \"description\": \"Smartband XYZ 3.0\",\n  \"paymentMethodCode\": 1,\n  \"client\": {\n    \"id\": \"749146d0-3e3c-4241-aef3-ba826ffe5554\"\n  },\n  \"creditCard\": {\n    \"number\": \"5452 4631 0836 7683\",\n    \"holder\": \"Portador do cartão de crédito\",\n    \"verificationCode\": \"77o7\",\n    \"expirationDate\": \"2040-01-01T00:00:00\"\n  }\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/CashIn/ProcessTransaction",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"CashIn",
+														"ProcessTransaction"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 06 Nov 2023 05:33:34 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"errors\": [\n        \"O código de verificação é inválido.\"\n    ],\n    \"model\": null,\n    \"success\": false\n}"
+										},
+										{
+											"name": "EmptyDescription",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"value\": 100.5,\n  \"description\": \"\",\n  \"paymentMethodCode\": 1,\n  \"client\": {\n    \"id\": \"749146d0-3e3c-4241-aef3-ba826ffe5554\"\n  },\n  \"creditCard\": {\n    \"number\": \"5452 4631 0836 7683\",\n    \"holder\": \"Portador do cartão de crédito\",\n    \"verificationCode\": \"777\",\n    \"expirationDate\": \"2040-01-01T00:00:00\"\n  }\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/CashIn/ProcessTransaction",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"CashIn",
+														"ProcessTransaction"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 06 Nov 2023 05:34:30 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"errors\": [\n        \"A descrição é um campo obrigatório.\"\n    ],\n    \"model\": null,\n    \"success\": false\n}"
+										},
+										{
+											"name": "AllErrors",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"value\": 0.0,\n  \"description\": \"\",\n  \"paymentMethodCode\": 0,\n  \"client\": {\n    \"id\": \"749146d0-3e3c-4241-aef3-ba826ffe5554\"\n  },\n  \"creditCard\": {\n    \"number\": \"5452 4631 0836 7683\",\n    \"holder\": \"Teste teste\",\n    \"verificationCode\": \"7d77\",\n    \"expirationDate\": \"2010-01-01T00:00:00\"\n  }\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/CashIn/ProcessTransaction",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"CashIn",
+														"ProcessTransaction"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 06 Nov 2023 06:02:42 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"errors\": [\n        \"O valor precisa ser superior a 0.0.\",\n        \"A descrição é um campo obrigatório.\",\n        \"Não existe essa forma de pagamento, favor informar 1 para Crédito ou 2 para Débito.\",\n        \"O código de verificação é inválido.\",\n        \"A data de validade do cartão precisa ser maior que a data atual.\"\n    ],\n    \"model\": null,\n    \"success\": false\n}"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "CashOut",
+					"item": [
+						{
+							"name": "GetBalance",
+							"item": [
+								{
+									"name": "/api/CashOut/GetBalance",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/CashOut/GetBalance?clientId=<uuid>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"CashOut",
+												"GetBalance"
+											],
+											"query": [
+												{
+													"key": "clientId",
+													"value": "<uuid>"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/CashOut/GetBalance?clientId=<uuid>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"CashOut",
+														"GetBalance"
+													],
+													"query": [
+														{
+															"key": "clientId",
+															"value": "<uuid>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "/"
+		}
+	]
+}
