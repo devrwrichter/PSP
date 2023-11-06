@@ -38,8 +38,6 @@ app.UseHealthChecks("/health", new HealthCheckOptions
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
 
-app.UseHealthChecksUI(options => { options.UIPath = "/dashboard"; });
-
 app.MapControllers();
 
 app.Run();

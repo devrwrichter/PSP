@@ -10,13 +10,6 @@ namespace Stone.PSP.Web.API.Configurations
             services.AddHealthChecks().AddSqlServer(connectionString: connectionString ?? string.Empty, name: "Instância do Banco de dados");
 
             services.AddHealthChecks().AddDbContextCheck<PaymentContext>();
-
-            services.AddHealthChecksUI(options =>
-            {
-                options.SetEvaluationTimeInSeconds(5);
-                options.MaximumHistoryEntriesPerEndpoint(10);
-                options.AddHealthCheckEndpoint("API com Health Checks", "/health");
-            }).AddInMemoryStorage();
         }
     }
 }

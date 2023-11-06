@@ -3,7 +3,7 @@ version: '3.4'
 services:
   stone.psp.web.api:
     image: ${DOCKER_REGISTRY-}stonepspwebapi
-    build:
+    build: 
       context: .
       dockerfile: Stone.PSP.Web.API/Dockerfile
     depends_on:
