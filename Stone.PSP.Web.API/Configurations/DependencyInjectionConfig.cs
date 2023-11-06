@@ -21,7 +21,7 @@ namespace Stone.PSP.Web.API.Configurations
             services.AddScoped<ICashInService, CashInService>();
             services.AddScoped<ICashOutService, CashOutService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IValidator<PspTransaction>, TransactionValidator>();
+            services.AddScoped<IValidator<Transaction>, TransactionValidator>();
             services.AddScoped<IPspTransactionRepository, PspTransactionRepository>();
             services.AddScoped<IPayableRepository, PayableRepository>();
             services.AddScoped<IDatabaseTransaction, EntityDatabaseTransaction>();

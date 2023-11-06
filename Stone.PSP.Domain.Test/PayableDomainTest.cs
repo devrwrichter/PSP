@@ -16,7 +16,7 @@ namespace Stone.PSP.Domain.Test
         public void GetPayable_ShouldBeOk(decimal value, PaymentMethodCodeType code, decimal result)
         {
             //Arrange
-            PspTransaction transaction = new()
+            Transaction transaction = new()
             {
                 Value = value,
                 PaymentMethodCode = (byte)code

@@ -7,9 +7,9 @@ namespace Stone.PSP.Domain.DomainObjects
     public class PayableDomain
     {
         private FeeConfiguration _feeConfig;
-        private PspTransaction _transaction;
+        private Transaction _transaction;
 
-        public PayableDomain(PspTransaction transaction, FeeConfiguration feeConfig)
+        public PayableDomain(Transaction transaction, FeeConfiguration feeConfig)
         {
             _transaction = transaction;
             _feeConfig = feeConfig;

@@ -1,6 +1,6 @@
 ﻿namespace Stone.PSP.Domain.Entities
 {
-    public record PspTransaction : Entity
+    public record Transaction : Entity
     {
         public Guid ClientId { get; set; }
         public decimal Value { get; set; }

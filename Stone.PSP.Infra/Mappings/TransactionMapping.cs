@@ -4,10 +4,11 @@ using Stone.PSP.Domain.Entities;
 
 namespace Stone.PSP.Infra.Mappings
 {
-    public class TransactionMapping : IEntityTypeConfiguration<PspTransaction>
+    public class TransactionMapping : IEntityTypeConfiguration<Transaction>
     {
-        public void Configure(EntityTypeBuilder<PspTransaction> builder)
+        public void Configure(EntityTypeBuilder<Transaction> builder)
         {
+            builder.ToTable("Transactions");
             builder.Property(x => x.PaymentMethodCode).IsRequired();
             builder.Property(x => x.CardHolder).HasColumnType("varchar(255)").IsRequired();
             builder.Property(x => x.CardExpirationDate).HasColumnType("date").IsRequired();

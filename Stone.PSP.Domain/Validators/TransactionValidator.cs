@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace Stone.PSP.Domain.Validators
 {
-    public class TransactionValidator : AbstractValidator<PspTransaction>
+    public class TransactionValidator : AbstractValidator<Transaction>
     {
         #region Constants
 
@@ -46,7 +46,7 @@ namespace Stone.PSP.Domain.Validators
             });
 
             this.RuleFor(x => x.PaymentMethodCode)
-                .CheckIntValueInEnum<PspTransaction, PaymentMethodCodeType>()
+                .CheckIntValueInEnum<Transaction, PaymentMethodCodeType>()
                 .WithMessage(ErrorPaymentMethodCode);
 
             this.RuleFor(x => x.CardVerificationCode).NotNull()

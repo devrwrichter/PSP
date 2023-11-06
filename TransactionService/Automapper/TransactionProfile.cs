@@ -9,7 +9,7 @@ namespace Stone.PSP.TransactionService.Automapper
     {
         public TransactionProfile()
         {
-            CreateMap<PspTransaction, TransactionViewModel>()
+            CreateMap<Transaction, TransactionViewModel>()
                 .ForMember(dest => dest.Client, opt => opt.MapFrom(src => new ClientViewModel { Id = src.ClientId }))
                 .ForMember(dest => dest.TransactionId, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.CreditCard, opt => opt.MapFrom(src => new CreditCardViewModel
@@ -20,7 +20,7 @@ namespace Stone.PSP.TransactionService.Automapper
                     VerificationCode = src.CardVerificationCode
                 }));
 
-            CreateMap<TransactionViewModel, PspTransaction>()
+            CreateMap<TransactionViewModel, Transaction>()
                 .ForMember(dest => dest.CardNumber, opt => opt.MapFrom(src => src.CreditCard.Number.GetOfuscatedCreditCardNumber()))
                 .ForMember(dest => dest.CardHolder, opt => opt.MapFrom(src => src.CreditCard.Holder.Trim()))
                 .ForMember(dest => dest.CardExpirationDate, opt => opt.MapFrom(src => src.CreditCard.ExpirationDate))
