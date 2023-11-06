@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-Domain", "03-Domain", "{C3305F68-3E4C-4927-B256-D0E88E851A67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stone.PSP.Domain", "Stone.PSP.Domain\Stone.PSP.Domain.csproj", "{1B4E4748-8C91-4961-8363-C022249C35E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stone.PSP.Domain", "Stone.PSP.Domain\Stone.PSP.Domain.csproj", "{1B4E4748-8C91-4961-8363-C022249C35E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
