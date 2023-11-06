@@ -29,8 +29,8 @@ namespace Stone.PSP.Web.API.Controllers
         }
 
         [HttpGet]
-        [Route("GetPaymentMethods")]
-        public IActionResult GetPaymentMethods()
+        [Route("GetPaymentMethodTypes")]
+        public IActionResult GetPaymentMethodTypes()
         {
             IList<string> paymentMethods = new List<string>();
 
@@ -43,8 +43,8 @@ namespace Stone.PSP.Web.API.Controllers
         }
 
         [HttpGet]
-        [Route("GetPayableStatus")]
-        public IActionResult GetPayableStatus()
+        [Route("GetPayableStatusTypes")]
+        public IActionResult GetPayableStatusTypes()
         {
             IList<string> statusTypes = new List<string>();
 
