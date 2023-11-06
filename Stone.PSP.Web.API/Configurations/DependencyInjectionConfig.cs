@@ -28,11 +28,11 @@ namespace Stone.PSP.Web.API.Configurations
 
             services.AddSingleton<IFeeConfigurationCacheService, FeeConfigurationCacheService>();
 
-            CinfigAutomapper(services);
+            ConfigAutomapper(services);
             ConfigDatabase(services, configuration);
         }
 
-        private static void CinfigAutomapper(IServiceCollection services)
+        private static void ConfigAutomapper(IServiceCollection services)
         {
             IMapper mapper = AutomapperConfig.GetConfiguration().CreateMapper();
             services.AddSingleton(mapper);
@@ -45,6 +45,10 @@ namespace Stone.PSP.Web.API.Configurations
             optionsBuilder.UseSqlServer(connectionString);
 
             services.AddScoped<PaymentContext>(opt => new PaymentContext(optionsBuilder.Options));
+
+            var context = services.BuildServiceProvider().GetRequiredService<PaymentContext>();
+            context.Database.EnsureCreated();
+
             services.AddSingleton<PaymentDapperContext>();
         }
     }

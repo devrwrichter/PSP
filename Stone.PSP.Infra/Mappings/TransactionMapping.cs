@@ -9,16 +9,16 @@ namespace Stone.PSP.Infra.Mappings
         public void Configure(EntityTypeBuilder<PspTransaction> builder)
         {
             builder.Property(x => x.PaymentMethodCode).IsRequired();
-            builder.Property(x => x.CardHolder).IsRequired();
-            builder.Property(x => x.CardExpirationDate).IsRequired();
-            builder.Property(x => x.CardNumber).IsRequired();
-            builder.Property(x => x.CardVerificationCode).IsRequired();
+            builder.Property(x => x.CardHolder).HasColumnType("varchar(255)").IsRequired();
+            builder.Property(x => x.CardExpirationDate).HasColumnType("date").IsRequired();
+            builder.Property(x => x.CardNumber).HasColumnType("varchar(4)").IsRequired();
+            builder.Property(x => x.CardVerificationCode).HasColumnType("varchar(4)").IsRequired();
             builder.Property(x => x.ClientId).IsRequired();
             builder.Property(x => x.Value).IsRequired();
-            builder.Property(x => x.Description).IsRequired();
+            builder.Property(x => x.Description).HasColumnType("varchar(100)").IsRequired();
 
             builder.HasKey(c => c.Id);
-            builder.Property(x => x.CreateAt).IsRequired();
+            builder.Property(x => x.CreateAt).HasColumnType("datetime").IsRequired();
         }
     }
 }
